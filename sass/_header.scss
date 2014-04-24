@@ -1,0 +1,118 @@
+header {
+	background: #fff;
+	border-bottom: 3px solid $grey;
+	min-height: 60px;
+	position: fixed;
+	z-index: 9999px;
+	width: 100%;
+	h1 {
+		background-image: url('../images/logo.png');
+		background-repeat: no-repeat;		
+		color: #333;
+		float: left;
+		font-size: 1.5em;
+		padding: 5px 50px 5px 75px;
+		margin: 0;
+		margin-top: 10px;
+		text-decoration: none;
+	}
+	.left {
+		min-height: 60px;
+		float: left;
+		padding-top: 25px;
+		li {
+			margin-right: 50px;
+			position: relative;
+			min-height: 35px;
+			&:hover > ul {
+				display: block;
+			}
+			a {
+				color: #333;
+				text-decoration: none;
+				&:hover { color: $red; }
+			}
+		}
+		ul:after {
+			content: "";
+			clear: both;
+			display: block;
+		}
+		ul ul {
+			background-color: #fff;
+			border: 1px solid $grey;
+			border-top: 3px solid $grey;
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: -1%;
+			padding: 0;
+			margin: 0;
+			width: 148px;
+			li {
+				border-bottom: 1px solid $grey;				
+				padding: 15px;
+				width: 148px;
+				&:last-child { border-bottom: none; }
+				a {
+					color: #222;
+					text-decoration: none;
+					&:hover { color: $red; }
+				}
+			}
+		}
+	}
+	.right {
+		float: right;
+		.user, .shopping-cart {			
+			background-repeat: no-repeat;
+			background-position: center;
+			border-right: 1px solid $grey;
+			display: block;
+			min-height: 60px;
+			width: 75px;
+			&:hover { background-color: $red; }			
+			span { display: none; }
+		}
+		.user {
+			background-image: url('../images/user.png');
+			border-left: 1px solid $grey;		
+			&:hover { background-image: url('../images/user-white.png'); cursor: pointer; }
+		}
+		.shopping-cart {
+			background-image: url('../images/shopping-cart.png');		
+			&:hover { background-image: url('../images/shopping-cart-white.png'); cursor: pointer; }
+		}
+		ul:after {
+			content: "";
+			clear: both;
+			display: block;
+		}
+		li { position: relative; }
+		li:hover > ul {
+			display: block;
+		}
+		ul ul {
+			background-color: #fff;
+			border: 1px solid $grey;
+			border-top: 3px solid $grey;
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: -1%;
+			padding: 0;
+			margin: 0;
+			li {
+				border-bottom: 1px solid $grey;				
+				padding: 15px;
+				min-width: 148px;
+				&:last-child { border-bottom: none; }
+				a {
+					color: #222;
+					text-decoration: none;
+					&:hover { color: $red; }
+				}
+			}
+		}
+	}	
+}
