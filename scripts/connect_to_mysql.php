@@ -11,6 +11,12 @@ $db_pass = "";
 // Ime baze
 $db_name = "restavracija";
 
-mysql_connect("$db_host","$db_username","$db_pass") or die ("could not connect to mysql");
-mysql_select_db("$db_name") or die ("No database");             
+$connection = mysql_connect("$db_host","$db_username","$db_pass");
+if(!$connection){ 
+	die ("could not connect to mysql");
+}
+$db_select = mysql_select_db("$db_name");
+if(!$db_select){
+	die ("No database");             
+}
 ?>

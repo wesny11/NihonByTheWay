@@ -1,15 +1,6 @@
 <!doctype html>
 
-<?php 
-	$connection_db = mysql_connect("localhost", "root");
-	if (!$connection_db) {
-		die("Povezava ni uspela!" . mysql_error());
-	}
-	$db_select = mysql_select_db("Restavracija_baza", $connection_db);
-	if (!$db_select) {
-		die("Izbira baze ni uspela!" . mysql_error());
-	}
-?>
+<?php include("scripts/connect_to_mysql.php"); ?>
 
 <html lang="en">
 <head>
@@ -20,74 +11,52 @@
 </head>
 <body>
 	<header>
-		<div class="row clearfix">
-			<a class="" href="#"><h1>日本ByTheWay</h1></a>
-			<nav class="left">
-				<ul class="inline-list">
-					<li><a href="#">DOMOV</a></li>
-					<li><a href="#">HRANA</a>
-						<ul>
-							<li><a href="#">VSE</a></li>
-							<li><a href="#">JUHE</a></li>
-							<li><a href="#">SUSHI</a></li>
-							<li><a href="#">SLADICE</a></li>
-							<li><a href="#">OSTALE JEDI</a></li>
-						</ul>
-					</li>
-					<li><a href="#">PIJAČA</a></li>
-					<li><a href="#">O NAS</a></li>
-				</ul>
-			</nav>
-			<nav class="right">
-				<ul class="inline-list">
-					<li class="user"><a href="#">
-						<span>User</span></a>
-						<ul>
-							<li><a href="#">PRIJAVA</a></li>
-							<li><a href="#">REGISTRACIJA</a></li>
-						</ul>
-					</li>
-					<li class="shopping-cart"><a href="#"><span>Shopping cart</span></a></li>
-				</ul>
-			</nav>			
-		</div>		
+		<?php include("header.php"); ?>		
 	</header> <!-- /Header -->
 
 	<div class="breadcrumbs">
-		<div class="row clearfix">
-			<ul class="inline-list">
-				<li class="home"><a href="#">DOMOV</a></li>			
-				<li class="triangle"></li>
-				<li><a href="#">HRANA</a></li>
-				<li class="triangle"></li>
-				<li><a href="#">SUSHI</a></li>
-				<li class="triangle"></li>
-				<li class="current"><a href="#">TEMPURA SUSHI</a></li>
-			</ul>
-		</div>
+		<?php include("breadcrumbs.php"); ?>
 	</div> <!-- /Breadcrumbs -->
 
 	<div class="content">
 		<div class="row clearfix">
 			<div class="product">
+				<?php $izbiraProductsGrid = $_GET['posamezna']; ?>
 				<div class="product-image">
-					<img src="images/sushi-big.png" alt="A big picture of sushi">
+					<?php
+						$slika = mysql_query("SELECT Slika FROM hrana WHERE HranaID='$izbiraProductsGrid'", $connection);
+						if (!$slika) {
+							die("Slike ni našlo!" . mysql_error());
+						}
+						while($vrstica = mysql_fetch_array($slika)){
+							echo '<img src='.$vrstica["Slika"].' alt="Slika ni na voljo!">';
+						}
+					?>
 				</div>				
 				<div class="product-information">
 					<div class="name-and-price">
-						<!--<h2>Tempura sushi</h2>-->
 						<h2><?php 
-							$ime = mysql_query("SELECT ime FROM hrana", $connection_db);
+							$ime = mysql_query("SELECT Ime FROM hrana WHERE HranaID='$izbiraProductsGrid'", $connection);
 							if (!$ime) {
 								die("Imena ni našlo!" . mysql_error());
 							}
-							echo $ime;
+							while($vrstica = mysql_fetch_array($ime)){
+								echo $vrstica[0];
+							}
 						?></h2>
 						<div class="admin-buttons">
 							<a href="#" class="edit">Uredi</a>
 							<a href="#" class="delete">Izbriši</a>
 						</div>
-						<span class="price">5,00 €</span>
+						<span class="price"><?php 
+							$cena = mysql_query("SELECT Cena FROM hrana WHERE HranaID=$izbiraProductsGrid", $connection);
+							if (!$cena) {
+								die("Cene ni našlo!" . mysql_error());
+							}
+							while($vrstica = mysql_fetch_array($cena)){
+								echo $vrstica[0] . ",00 €";
+							}
+						?></span>
 					</div>
 					<div class="order">
 						<label for="quantity">Količina:</label>
@@ -96,35 +65,41 @@
 					</div>
 					<div class="description">
 						<h4>Opis</h4>
-						<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi dolores quos amet deleniti. Nobis, aut eum expedita consequatur eaque optio velit maiores incidunt quae fuga laudantium tenetur cum rerum eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, ipsa, ut placeat accusantium quae aperiam consectetur nesciunt excepturi in voluptatem illum officiis minus. Consectetur, voluptatibus animi nihil ad quasi totam!</p>
+						<p class="description"><?php 
+							$opis = mysql_query("SELECT Opis FROM hrana WHERE HranaID=$izbiraProductsGrid", $connection);
+							if (!$opis) {
+								die("Opisa ni našlo!" . mysql_error());
+							}
+							while($vrstica = mysql_fetch_array($opis)){
+								echo $vrstica[0];
+							}
+						?></p>
 					</div>					
 				</div> <!-- /Product-information -->
 				<div class="comments">
-					<h2>Komentarji</h2>
-					<div class="single-comment">
-						<div class="author">
-							<span>Matej Urh</span>
-						</div>
-						<div class="text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, vel, quidem ipsam officiis natus nostrum quis quo optio dolore reprehenderit libero ad repellendus corporis modi unde tenetur laudantium magnam a.</p>
-						</div>
-					</div>
-					<div class="single-comment">
-						<div class="author">
-							<span>Matej Urh</span>
-						</div>
-						<div class="text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, vel, quidem ipsam officiis natus nostrum quis quo optio dolore reprehenderit libero ad repellendus corporis modi unde tenetur laudantium magnam a.</p>
-						</div>
-					</div>
-					<div class="single-comment">
-						<div class="author">
-							<span>Matej Urh</span>
-						</div>
-						<div class="text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, vel, quidem ipsam officiis natus nostrum quis quo optio dolore reprehenderit libero ad repellendus corporis modi unde tenetur laudantium magnam a.</p>
-						</div>
-					</div>
+					<h2>Komentarji</h2><?php
+						$komentarji = mysql_query("SELECT * FROM komentarhrana WHERE Hrana_HranaID=$izbiraProductsGrid", $connection);
+						if (!$komentarji) {
+							die("Komentarjev ni našlo!" . mysql_error());
+						}
+						while($komentar = mysql_fetch_array($komentarji)){
+							echo '<div class="single-comment">
+								<div class="author">';
+									$idAvtor = $komentar["Uporabnik_UporabnikID"];
+									$avtor = mysql_query("SELECT Ime,Priimek FROM uporabniki WHERE UporabnikID=$idAvtor", $connection);
+									if (!$avtor) {
+										die("Komentarja ni našlo!" . mysql_error());
+									}
+									while($vrstica = mysql_fetch_array($avtor)){
+										echo '<span>'.$vrstica[0].'</span>';
+									}
+								echo '</div>
+								<div class="text">
+									<p>'.$komentar["Vsebina"].'</p>
+								</div>
+							</div>';
+						}
+					?>
 					<div class="comment-form">
 						<div>
 							<input type="text" name="name" class="name" value="" placeholder="Ime">
@@ -145,19 +120,9 @@
 	</div> <!-- /Content -->
 
 	<footer>
-		<div class="row clearfix">
-			<div class="center">				
-				<ul class="inline-list">
-					<li><span>©2014 日本ByTheWay</span></li>
-					<li><a href="#">Domov</a></li>
-					<li><a href="#">Hrana</a></li>
-					<li><a href="#">Pijača</a></li>
-					<li><a href="#">O Nas</a></li>
-				</ul>
-			</div>			
-		</div>
+		<?php include("footer.php"); ?>
 	</footer> <!-- /Footer -->
 </body>
 </html>
 
-<?php mysql_close($connection_db); ?>
+<?php mysql_close($connection); ?>
