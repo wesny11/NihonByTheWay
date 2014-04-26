@@ -13,10 +13,10 @@ $db_name = "restavracija";
 
 $connection = mysql_connect("$db_host","$db_username","$db_pass");
 if(!$connection){ 
-	die ("could not connect to mysql");
+	die ("Povezava na mysql ni uspela!");
 }
 $db_select = mysql_select_db("$db_name");
 if(!$db_select){
-	die ("No database");             
+	die ("Ni baze!");             
 }
 ?>

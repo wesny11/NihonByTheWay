@@ -29,19 +29,16 @@
 						die("Ni našlo!" . mysql_error());
 					}
 					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>';
-							echo '<div class="inner">';
-								echo '<div class="product-picture">';
-									echo '<img src='.$vseJedi["Slika"].' alt="">';
-								echo '</div>';
-								echo '<div class="product-information">';
-									echo '<a href="product.php?posamezna='.$vseJedi["HranaID"].'"><h4>';
-										echo $vseJedi["Ime"];
-									echo '</h4></a>';
-									echo '<h5>';
-									echo $vseJedi["Cena"] . ",00 €";
-									echo '</h5>
-								</div>						
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vseJedi["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<h4>' .$vseJedi["Ime"]. '</h4></a>
+									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
+								</div>
 							</div>
 							<div class="admin-buttons">
 								<a href="#" class="edit">Uredi</a>
@@ -49,6 +46,129 @@
 							</div>				
 						</li>';
 					}
+				}
+				if($izbiraHeader == 1){
+					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Juhe'", $connection);
+					if (!$vse) {
+						die("Ni našlo!" . mysql_error());
+					}
+					while($vseJedi = mysql_fetch_array($vse)){
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vseJedi["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<h4>' .$vseJedi["Ime"]. '</h4></a>
+									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
+								</div>
+							</div>
+							<div class="admin-buttons">
+								<a href="#" class="edit">Uredi</a>
+								<a href="#" class="delete">Izbriši</a>
+							</div>				
+						</li>';
+					}
+				}
+				if($izbiraHeader == 2){
+					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Sushi'", $connection);
+					if (!$vse) {
+						die("Ni našlo!" . mysql_error());
+					}
+					while($vseJedi = mysql_fetch_array($vse)){
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vseJedi["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<h4>' .$vseJedi["Ime"]. '</h4></a>
+									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
+								</div>
+							</div>
+							<div class="admin-buttons">
+								<a href="#" class="edit">Uredi</a>
+								<a href="#" class="delete">Izbriši</a>
+							</div>				
+						</li>';
+					}
+				}
+				if($izbiraHeader == 3){
+					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Sladice'", $connection);
+					if (!$vse) {
+						die("Ni našlo!" . mysql_error());
+					}
+					while($vseJedi = mysql_fetch_array($vse)){
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vseJedi["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<h4>' .$vseJedi["Ime"]. '</h4></a>
+									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
+								</div>
+							</div>
+							<div class="admin-buttons">
+								<a href="#" class="edit">Uredi</a>
+								<a href="#" class="delete">Izbriši</a>
+							</div>				
+						</li>';
+					}
+				}
+				if($izbiraHeader == 4){
+					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Ostalo'", $connection);
+					if (!$vse) {
+						die("Ni našlo!" . mysql_error());
+					}
+					while($vseJedi = mysql_fetch_array($vse)){
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vseJedi["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<h4>' .$vseJedi["Ime"]. '</h4></a>
+									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
+								</div>
+							</div>
+							<div class="admin-buttons">
+								<a href="#" class="edit">Uredi</a>
+								<a href="#" class="delete">Izbriši</a>
+							</div>				
+						</li>';
+					}
+				}
+				if($izbiraHeader == 5){
+					$vse = mysql_query("SELECT * FROM pijaca", $connection);
+					if (!$vse) {
+						die("Ni našlo!" . mysql_error());
+					}
+					while($vsePijace = mysql_fetch_array($vse)){
+						echo '<li>
+							<div class="inner">
+								<div class="product-picture">
+									<img src='.$vsePijace["Slika"].' alt="">
+								</div>
+								<div class="product-information">
+									<a href="product.php?posamezna='.$vsePijace["PijacaID"].'&zivilo=pijaca">
+									<h4>' .$vsePijace["Ime"]. '</h4></a>
+									<h5>' .$vsePijace["Cena"].",00 €". '</h5>
+								</div>
+							</div>
+							<div class="admin-buttons">
+								<a href="#" class="edit">Uredi</a>
+								<a href="#" class="delete">Izbriši</a>
+							</div>				
+						</li>';
+					}
+				}
+				if($izbiraHeader == 6){
+					//O nas - prestavitev restavracije in osebja
 				}
 				?>
 			</ul> <!-- /Product-grid -->			

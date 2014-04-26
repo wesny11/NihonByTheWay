@@ -21,10 +21,16 @@
 	<div class="content">
 		<div class="row clearfix">
 			<div class="product">
-				<?php $izbiraProductsGrid = $_GET['posamezna']; ?>
+				<?php $posamezna = $_GET['posamezna']; ?>
+				<?php $zivilo = $_GET['zivilo']; ?>
 				<div class="product-image">
 					<?php
-						$slika = mysql_query("SELECT Slika FROM hrana WHERE HranaID='$izbiraProductsGrid'", $connection);
+						if ($zivilo == 'hrana') {
+							$slika = mysql_query("SELECT Slika FROM hrana WHERE HranaID='$posamezna'", $connection);
+						} 
+						if ($zivilo == 'pijaca') {
+							$slika = mysql_query("SELECT Slika FROM pijaca WHERE PijacaID='$posamezna'", $connection);
+						}
 						if (!$slika) {
 							die("Slike ni našlo!" . mysql_error());
 						}
@@ -36,7 +42,12 @@
 				<div class="product-information">
 					<div class="name-and-price">
 						<h2><?php 
-							$ime = mysql_query("SELECT Ime FROM hrana WHERE HranaID='$izbiraProductsGrid'", $connection);
+							if ($zivilo == 'hrana') {
+								$ime = mysql_query("SELECT Ime FROM hrana WHERE HranaID='$posamezna'", $connection);
+							}
+							if ($zivilo == 'pijaca') {
+								$ime = mysql_query("SELECT Ime FROM pijaca WHERE PijacaID='$posamezna'", $connection);
+							}
 							if (!$ime) {
 								die("Imena ni našlo!" . mysql_error());
 							}
@@ -49,7 +60,12 @@
 							<a href="#" class="delete">Izbriši</a>
 						</div>
 						<span class="price"><?php 
-							$cena = mysql_query("SELECT Cena FROM hrana WHERE HranaID=$izbiraProductsGrid", $connection);
+							if ($zivilo == 'hrana') {
+								$cena = mysql_query("SELECT Cena FROM hrana WHERE HranaID=$posamezna", $connection);
+							}
+							if ($zivilo == 'pijaca') {
+								$cena = mysql_query("SELECT Cena FROM pijaca WHERE PijacaID=$posamezna", $connection);
+							}
 							if (!$cena) {
 								die("Cene ni našlo!" . mysql_error());
 							}
@@ -66,7 +82,12 @@
 					<div class="description">
 						<h4>Opis</h4>
 						<p class="description"><?php 
-							$opis = mysql_query("SELECT Opis FROM hrana WHERE HranaID=$izbiraProductsGrid", $connection);
+							if ($zivilo == 'hrana') {
+								$opis = mysql_query("SELECT Opis FROM hrana WHERE HranaID=$posamezna", $connection);
+							}
+							if ($zivilo == 'pijaca') {
+								$opis = mysql_query("SELECT Opis FROM pijaca WHERE PijacaID=$posamezna", $connection);
+							}
 							if (!$opis) {
 								die("Opisa ni našlo!" . mysql_error());
 							}
@@ -78,7 +99,12 @@
 				</div> <!-- /Product-information -->
 				<div class="comments">
 					<h2>Komentarji</h2><?php
-						$komentarji = mysql_query("SELECT * FROM komentarhrana WHERE Hrana_HranaID=$izbiraProductsGrid", $connection);
+						if ($zivilo == 'hrana') {
+							$komentarji = mysql_query("SELECT * FROM komentarhrana WHERE Hrana_HranaID=$posamezna", $connection);
+						}
+						if ($zivilo == 'pijaca') {
+							$komentarji = mysql_query("SELECT * FROM komentarpijaca WHERE Pijaca_PijacaID=$posamezna", $connection);
+						}
 						if (!$komentarji) {
 							die("Komentarjev ni našlo!" . mysql_error());
 						}
