@@ -10,19 +10,23 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+		
 	<header>
 		<?php include("header.php"); ?>		
 	</header> <!-- /Header -->
 
 	<div class="breadcrumbs">
-		<?php include("breadcrumbs.php"); ?>
+		<?php 
+			$izbiraHeader=$_GET['header'];		//spremenljivke sem iz content-a premaknila sem, da so vidne tudi v breadcrumbs 
+			$posamezna=$_GET['posamezna'];
+			$zivilo = $_GET['zivilo'];
+			include("breadcrumbs-single.php");
+		?>
 	</div> <!-- /Breadcrumbs -->
 
 	<div class="content">
 		<div class="row clearfix">
 			<div class="product">
-				<?php $posamezna = $_GET['posamezna']; ?>
-				<?php $zivilo = $_GET['zivilo']; ?>
 				<div class="product-image">
 					<?php
 						if ($zivilo == 'hrana') {

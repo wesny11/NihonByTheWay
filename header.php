@@ -21,8 +21,8 @@
 			<li class="user"><a href="#">
 				<span>User</span></a>
 				<ul>
-					<li><a href="#">PRIJAVA</a></li>
-					<li><a href="#">REGISTRACIJA</a></li>
+					<li><a href="login.php">PRIJAVA</a></li>
+					<li><a href="register.php">REGISTRACIJA</a></li>
 				</ul>
 			</li>
 			<li class="shopping-cart"><a href="#"><span>Shopping cart</span></a></li>
