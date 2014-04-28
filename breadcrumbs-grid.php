@@ -1,6 +1,6 @@
 <div class="row clearfix">
 	<ul class="inline-list">
-		<li class="home"><a href="#">DOMOV</a></li>			
+		<li class="home"><a href="index.php">DOMOV</a></li>			
 		<li class="triangle"></li>
 		<?php 		
 			if($izbiraHeader == 0){

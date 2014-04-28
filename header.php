@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <div class="row clearfix">
 	<a class="" href="index.php"><h1>日本ByTheWay</h1></a>
 	<nav class="left">
@@ -16,29 +14,29 @@
 			</li>
 			<li><a href="products-grid.php?izbira=5">PIJAČA</a></li>
 			<li><a href="products-grid.php?izbira=6">O NAS</a></li>
+			<?php 
+				if (isset($_COOKIE["uporabnik"])) {
+					$user = $_COOKIE["uporabnik"];
+					echo '<li><a href="#">'.$user.'</a></li>';
+				}
+			?>	
 		</ul>
 	</nav>
 	<nav class="right">
 		<ul class="inline-list">
 			<li class="user"><a href="#">
 				<span>User</span></a>
-<<<<<<< HEAD
 				<ul><?php
 					//Če je uporabnik prijavljen, se lahko le odjavi
-					if (isset($_SESSION['email'])) {
+					$user = "";
+					if(isset($_COOKIE["uporabnik"])){
 						echo '<li><a href="logout.php">ODJAVA</a></li>';
-					//Če je uporabnik gost, se lahko prijavi ali registrira
 					} else {
+					//Če je uporabnik gost, se lahko prijavi ali registrira
 						echo '<li><a href="login.php">PRIJAVA</a></li>';
 						echo '<li><a href="register.php">REGISTRACIJA</a></li>';
 					}
 				?></ul>
-=======
-				<ul>
-					<li><a href="login.php">PRIJAVA</a></li>
-					<li><a href="register.php">REGISTRACIJA</a></li>
-				</ul>
->>>>>>> 85b3443f3c26dede33a7cdcc31d4772264c20659
 			</li>
 			<li class="shopping-cart"><a href="#"><span>Shopping cart</span></a></li>
 		</ul>

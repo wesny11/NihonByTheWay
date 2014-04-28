@@ -16,10 +16,9 @@
 	
 	<div class="breadcrumbs">
 		<?php 
-			$izbiraHeader = $_GET['izbira']; 	//spremenljivko sem iz content-a premaknila sem, da so vidne tudi v breadcrumbs
+			$izbiraHeader = $_GET['izbira'];
 			include("breadcrumbs-grid.php");
 		?>
-		
 	</div> <!-- /Breadcrumbs -->	
 
 	<div class="content">
@@ -42,12 +41,17 @@
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 1){
@@ -66,12 +70,17 @@
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 2){
@@ -90,12 +99,17 @@
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 3){
@@ -114,12 +128,17 @@
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 4){
@@ -138,12 +157,17 @@
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 5){
@@ -162,12 +186,17 @@
 									<h4>' .$vsePijace["Ime"]. '</h4></a>
 									<h5>' .$vsePijace["Cena"].",00 €". '</h5>
 								</div>
-							</div>
-							<div class="admin-buttons">
-								<a href="#" class="edit">Uredi</a>
-								<a href="#" class="delete">Izbriši</a>
-							</div>				
-						</li>';
+							</div>';
+							if (isset($_COOKIE["admin"])) {
+								$admin = $_COOKIE["admin"];	
+								if ($admin == 1) {
+									echo'<div class="admin-buttons">
+										<a href="#" class="edit">Uredi</a>
+										<a href="#" class="delete">Izbriši</a>
+									</div>';
+								}
+							}
+						echo'</li>';
 					}
 				}
 				if($izbiraHeader == 6){

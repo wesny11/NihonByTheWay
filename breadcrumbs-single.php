@@ -1,6 +1,6 @@
 <div class="row clearfix">
 	<ul class="inline-list">
-		<li class="home"><a href="#">DOMOV</a></li>			
+		<li class="home"><a href="index.php">DOMOV</a></li>			
 		<li class="triangle"></li>
 		<?php 	
 			if ($zivilo == 'hrana') {
@@ -12,7 +12,6 @@
 			if (!$ime) {
 				die("Imena ni našlo!" . mysql_error());
 			}
-			//naredila sem s switchom, ker je manj primerjamo, manj kode, saj je prvih pet izbir hrana, nato sem samo še dodala vrsto hrane, ki sem jo dobila iz zgornjega query-ja
 			switch($izbiraHeader){
 				case 0:
 				case 1:

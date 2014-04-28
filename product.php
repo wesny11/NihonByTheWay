@@ -17,7 +17,7 @@
 
 	<div class="breadcrumbs">
 		<?php 
-			$izbiraHeader=$_GET['header'];		//spremenljivke sem iz content-a premaknila sem, da so vidne tudi v breadcrumbs 
+			$izbiraHeader=$_GET['header'];
 			$posamezna=$_GET['posamezna'];
 			$zivilo = $_GET['zivilo'];
 			include("breadcrumbs-single.php");
@@ -58,12 +58,17 @@
 							while($vrstica = mysql_fetch_array($ime)){
 								echo $vrstica[0];
 							}
-						?></h2>
-						<div class="admin-buttons">
-							<a href="#" class="edit">Uredi</a>
-							<a href="#" class="delete">Izbriši</a>
-						</div>
-						<span class="price"><?php 
+						echo '</h2>';
+						if (isset($_COOKIE["admin"])) {
+							$admin = $_COOKIE["admin"];	
+							if ($admin == 1) {
+								echo'<div class="admin-buttons">
+									<a href="#" class="edit">Uredi</a>
+									<a href="#" class="delete">Izbriši</a>
+								</div>';
+							}
+						}
+						echo '<span class="price">'; 
 							if ($zivilo == 'hrana') {
 								$cena = mysql_query("SELECT Cena FROM hrana WHERE HranaID=$posamezna", $connection);
 							}
@@ -129,21 +134,28 @@
 								</div>
 							</div>';
 						}
+					if (isset($_COOKIE["uporabnik"])) { //če je nekdo prijavljen in to ni admin, dovoli oddajo komentarja
+						if (isset($_COOKIE["admin"])) {
+							$admin = $_COOKIE["admin"];	
+							if ($admin == 0) {
+								echo'<div class="comment-form">
+									<div>
+										<input type="text" name="name" class="name" value="" placeholder="Ime">
+									</div>
+									<div>
+										<input type="email" name="email" class="email" value="" placeholder="Email">
+									</div>
+									<div>
+										<textarea rows="10" name="comment" class="comment" placeholder="Komentar"></textarea>
+									</div>
+									<div>
+										<input type="submit" name="submit" value="Oddaj komentar">
+									</div>						
+								</div>';
+							}
+						}
+					}
 					?>
-					<div class="comment-form">
-						<div>
-							<input type="text" name="name" class="name" value="" placeholder="Ime">
-						</div>
-						<div>
-							<input type="email" name="email" class="email" value="" placeholder="Email">
-						</div>
-						<div>
-							<textarea rows="10" name="comment" class="comment" placeholder="Komentar"></textarea>
-						</div>
-						<div>
-							<input type="submit" name="submit" value="Oddaj komentar">
-						</div>						
-					</div>
 				</div> <!-- /Comments -->
 			</div>	
 		</div>

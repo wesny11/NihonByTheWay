@@ -8,10 +8,4 @@
 			<li><a href="products-grid.php?izbira=6">O Nas</a></li>
 		</ul>
 	</div>
-	<?php $user="";
-		if(isset($_COOKIE["uporabnik"])){
-			$user=$_COOKIE["uporabnik"];
-		  }
-	
-	echo '<a href="odjava.php">'.$user.'</a>'?>
 </div>

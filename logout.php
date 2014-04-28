@@ -1,5 +1,6 @@
 <!doctype html>
 
+<?php session_start(); ?>
 <?php include("scripts/connect_to_mysql.php"); ?>
 
 <html lang="en">
@@ -14,19 +15,26 @@
 		<?php include("header.php"); ?>	
 	</header> <!-- /Header -->
 
+	<div class="breadcrumbs">
+		<div class="row clearfix">
+		</div>
+	</div> <!-- /Breadcrumbs -->
+	
 	<div class="content">
 		<div class="row">
 			<div class="logout">
-				<?php 
-				$ime = mysql_query("SELECT Ime FROM uporabniki WHERE Email=$email", $connection);
-				if (!$ime) {
-					die("Imena ni našlo!" . mysql_error());
-				}
-				$vrstica = mysql_fetch_array($ime);
-				echo '<h2>Sayonara '.$vrstica[0].'-san!</h2>';
-				unset($_SESSION['email']);
-				header("refresh:3; url=index.php");
-				die();
+				<?php	
+					if ($_SESSION['JeAdmin'] == 0) {
+						$user = $_COOKIE["uporabnik"];
+						echo '<h2>Sayonara '.$user.'-san!</h2>';
+					}
+					//uničimo sejo
+					$_SESSION = array();
+					session_destroy();
+					//uničimo cookie
+					setcookie("uporabnik", "", time()-3600);
+					header("refresh:2; url=index.php");
+					die();
 				?>
 			</div>
 		</div>
