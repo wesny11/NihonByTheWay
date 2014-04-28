@@ -13,16 +13,19 @@
 	<header>
 		<?php include("header.php"); ?>		
 	</header> <!-- /Header -->
-
+	
 	<div class="breadcrumbs">
-		<?php include("breadcrumbs.php"); ?>
+		<?php 
+			$izbiraHeader = $_GET['izbira']; 	//spremenljivko sem iz content-a premaknila sem, da so vidne tudi v breadcrumbs
+			include("breadcrumbs-grid.php");
+		?>
+		
 	</div> <!-- /Breadcrumbs -->	
 
 	<div class="content">
 		<div class="row clearfix">
 			<ul class="products-grid inline-list">
 				<?php 
-				$izbiraHeader = $_GET['izbira'];
 				if($izbiraHeader == 0){
 					$vse = mysql_query("SELECT * FROM hrana", $connection);
 					if (!$vse) {
@@ -35,7 +38,7 @@
 									<img src='.$vseJedi["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
@@ -59,7 +62,7 @@
 									<img src='.$vseJedi["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
@@ -83,7 +86,7 @@
 									<img src='.$vseJedi["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
@@ -107,7 +110,7 @@
 									<img src='.$vseJedi["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
@@ -131,7 +134,7 @@
 									<img src='.$vseJedi["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana">
+									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
 									<h4>' .$vseJedi["Ime"]. '</h4></a>
 									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
 								</div>
@@ -155,7 +158,7 @@
 									<img src='.$vsePijace["Slika"].' alt="">
 								</div>
 								<div class="product-information">
-									<a href="product.php?posamezna='.$vsePijace["PijacaID"].'&zivilo=pijaca">
+									<a href="product.php?posamezna='.$vsePijace["PijacaID"].'&zivilo=pijaca&header='.$izbiraHeader.'">
 									<h4>' .$vsePijace["Ime"]. '</h4></a>
 									<h5>' .$vsePijace["Cena"].",00 €". '</h5>
 								</div>
@@ -174,7 +177,7 @@
 			</ul> <!-- /Product-grid -->			
 		</div>
 	</div> <!-- /Content -->	
-
+		
 	<footer>
 		<?php include("footer.php"); ?>
 	</footer> <!-- /Footer -->	

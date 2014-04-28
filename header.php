@@ -22,6 +22,7 @@
 		<ul class="inline-list">
 			<li class="user"><a href="#">
 				<span>User</span></a>
+<<<<<<< HEAD
 				<ul><?php
 					//Če je uporabnik prijavljen, se lahko le odjavi
 					if (isset($_SESSION['email'])) {
@@ -32,6 +33,12 @@
 						echo '<li><a href="register.php">REGISTRACIJA</a></li>';
 					}
 				?></ul>
+=======
+				<ul>
+					<li><a href="login.php">PRIJAVA</a></li>
+					<li><a href="register.php">REGISTRACIJA</a></li>
+				</ul>
+>>>>>>> 85b3443f3c26dede33a7cdcc31d4772264c20659
 			</li>
 			<li class="shopping-cart"><a href="#"><span>Shopping cart</span></a></li>
 		</ul>
