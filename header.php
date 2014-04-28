@@ -1,8 +1,10 @@
+<?php session_start(); ?>
+
 <div class="row clearfix">
-	<a class="" href="#"><h1>日本ByTheWay</h1></a>
+	<a class="" href="index.php"><h1>日本ByTheWay</h1></a>
 	<nav class="left">
 		<ul class="inline-list">
-			<li><a href="#">DOMOV</a></li>
+			<li><a href="index.php">DOMOV</a></li>
 			<li><a href="products-grid.php?izbira=0">HRANA</a>
 				<ul>
 					<li><a href="products-grid.php?izbira=0">VSE</a></li>
@@ -20,10 +22,16 @@
 		<ul class="inline-list">
 			<li class="user"><a href="#">
 				<span>User</span></a>
-				<ul>
-					<li><a href="#">PRIJAVA</a></li>
-					<li><a href="#">REGISTRACIJA</a></li>
-				</ul>
+				<ul><?php
+					//Če je uporabnik prijavljen, se lahko le odjavi
+					if (isset($_SESSION['email'])) {
+						echo '<li><a href="logout.php">ODJAVA</a></li>';
+					//Če je uporabnik gost, se lahko prijavi ali registrira
+					} else {
+						echo '<li><a href="login.php">PRIJAVA</a></li>';
+						echo '<li><a href="register.php">REGISTRACIJA</a></li>';
+					}
+				?></ul>
 			</li>
 			<li class="shopping-cart"><a href="#"><span>Shopping cart</span></a></li>
 		</ul>

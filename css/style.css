@@ -415,7 +415,7 @@ button:hover {
   font-size: 16px;
 }
 .content .row .registration, .content .row .login {
-  margin: 0 auto;
+  margin: 80px auto;
   width: 450px;
   margin-bottom: 20px;
 }
@@ -427,7 +427,7 @@ button:hover {
   min-height: 410px;
   text-align: center;
 }
-.content .registration h2, .content .login h2 {
+.content .registration h2, .content .login h2, .content .login2 h2, .content .logout h2 {
   margin: 0;
   padding: 0;
 }
@@ -447,5 +447,11 @@ button:hover {
   min-width: 100px;
 }
 .content .login {
+  min-height: 270px;
+}
+.content .login2 {
+  min-height: 270px;
+}
+.content .logout {
   min-height: 270px;
 }

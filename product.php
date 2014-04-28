@@ -117,7 +117,7 @@
 										die("Komentarja ni našlo!" . mysql_error());
 									}
 									while($vrstica = mysql_fetch_array($avtor)){
-										echo '<span>'.$vrstica[0].'</span>';
+										echo '<span>'.$vrstica[0]." ".$vrstica[1].'</span>';
 									}
 								echo '</div>
 								<div class="text">
