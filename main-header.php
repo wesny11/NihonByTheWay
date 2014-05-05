@@ -13,7 +13,7 @@
 				</ul>
 			</li>
 			<li><a href="products-grid.php?izbira=5">PIJAČA</a></li>
-			<li><a href="products-grid.php?izbira=6">O NAS</a></li>
+			<li><a href="about-us.php">O NAS</a></li>
 		</ul>
 	</nav>
 	<nav class="user-nav right">

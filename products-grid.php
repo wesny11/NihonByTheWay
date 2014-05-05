@@ -47,7 +47,7 @@
 					
 					if (mysqli_num_rows($result) != 0) {
 						while($vrstica = mysqli_fetch_array($result)) {
-							echo '<li>';							
+							echo '<li>';	
 								echo '<div class="inner">';
 									echo '<div class="product-picture"><img src='.$vrstica["Slika"].' alt=""></div>';
 									echo '<div class="product-information">';

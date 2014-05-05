@@ -291,7 +291,7 @@ a.big-red:hover, button.big-red:hover {
   text-align: right;
   width: 350px;
 }
-.main-content .add-product p input, .main-content .register p input, .main-content .login p input {
+.main-content .add-product p input, .main-content .add-product p textarea, .main-content .register p input, .main-content .register p textarea, .main-content .login p input, .main-content .login p textarea {
   border: 1px solid #d4d4d4;
   padding: 8px 10px;
   border-radius: 5px;
@@ -299,6 +299,21 @@ a.big-red:hover, button.big-red:hover {
   margin-bottom: 10px;
   margin-left: 10px;
   font-size: 14px;
+}
+.main-content .add-product p input[type="file"], .main-content .register p input[type="file"], .main-content .login p input[type="file"] {
+  max-width: 208px;
+}
+.main-content .add-product p .fix-align, .main-content .register p .fix-align, .main-content .login p .fix-align {
+  margin-right: 222px;
+}
+.main-content .add-product p textarea, .main-content .register p textarea, .main-content .login p textarea {
+  width: 208px;
+  max-width: 208px;
+}
+.main-content .add-product p select, .main-content .register p select, .main-content .login p select {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  min-width: 208px;
 }
 .main-content .add-product button, .main-content .register button, .main-content .login button {
   width: 150px;
@@ -418,4 +433,12 @@ a.big-red:hover, button.big-red:hover {
 }
 .main-content .product .comments .comment-form input[type="submit"]:hover {
   color: #fff;
+}
+.main-content .about-us {
+  text-align: center;
+  line-height: 2;
+}
+.main-content .about-us p {
+  max-width: 900px;
+  margin: 0 auto;
 }

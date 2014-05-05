@@ -7,6 +7,19 @@
 	session_start();
 	include('mysql-connection.php');
 ?>
+<?php
+	$ime = null;
+	$vrsta = null;
+	$vrsta_hrane = null;
+	$opis = null;
+	$cena = null;
+	$slika = null;
+
+	if (isset($_POST['submit'])) {
+		$ime = $_POST['name'];
+		$hranapjaca = $_POST['foodvsdrink'];
+	}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,15 +47,15 @@
 
 					<p>
 						<label>Vrsta:</label>
-						<select class="isFood">
+						<select name="foodvsdrink" class="isfood">
 							<option value="hrana">Hrana</option>
 							<option value="pijaca">Pijača</option>
 						</select>
 					</p>
 
-					<p class="isVisible">
+					<p class="isvisible">
 						<label>Vrsta hrane:</label>
-						<select>
+						<select name="category">
 							<option value="juhe">Juhe</option>
 							<option value="sushi">Sushi</option>
 							<option value="sladice">Sladice</option>
@@ -51,7 +64,7 @@
 					</p>
 
 					<p>
-						<label>Opis:</label><br>
+						<label class="fix-align">Opis:</label><br>
 						<textarea></textarea>
 					</p>
 
@@ -62,7 +75,9 @@
 
 					<p>
 						<label>Slika:</label>
+						<input type="file" name="image" />
 					</p>
+					<button class="big-red" type="submit" name="submit">Dodaj</button>
 				</form>
 			</div>
 		</div>
@@ -73,11 +88,11 @@
 	</footer>
 
 	<script>
-		$('.isFood').change(function() {
+		$('.isfood').change(function() {
 			if ($(this).val() == "pijaca") {
-				$('.isVisible').css('display', 'none');
+				$('.isvisible').css('display', 'none');
 			} else {
-				$('.isVisible').css('display', 'block');
+				$('.isvisible').css('display', 'block');
 			}
 		})
 	</script>

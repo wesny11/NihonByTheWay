@@ -5,7 +5,7 @@
 			<li><a href="index.php">Domov</a></li>
 			<li><a href="products-grid.php?izbira=0">Hrana</a></li>
 			<li><a href="products-grid.php?izbira=5">Pijača</a></li>
-			<li><a href="products-grid.php?izbira=6">O Nas</a></li>
+			<li><a href="about-us.php">O Nas</a></li>
 		</ul>
 	</div>
 </div>
