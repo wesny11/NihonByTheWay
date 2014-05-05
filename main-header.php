@@ -25,7 +25,7 @@
 					echo '<li class="welcome"><p>Konnichiwa <span class="red">' . $username . '</span></p></li>';
 				} else if (isset($_SESSION['admin'])) {
 					$username = $_SESSION['admin'];
-					echo '<li class="welcome"><span class="welcome">' . $username . '</span></li>';
+					echo '<li class="welcome"><p><span class="welcome">' . $username . '</span></p></li>';
 				}
 			?>			
 			<li class="user"><a href="#"><span>User</span></a>
