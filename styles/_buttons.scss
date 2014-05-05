@@ -1,0 +1,40 @@
+a.big-red, button.big-red {
+	border: 0 none;
+	border-radius: 2px 2px 2px 2px;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Arial,sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 20px;
+	margin-bottom: 0;
+	margin-top: 10px;
+	padding: 7px 10px;
+	text-transform: none;
+	text-decoration: none;
+	width: 16.795%;
+	text-align: center;
+	background: none repeat scroll 0 0 $red;
+	color: #fff;
+	&:hover {
+		background: none repeat scroll 0 0 #999999;
+		color: #fff;
+	}
+}
+
+.add-product-button {
+	height: 75px;
+	padding-left: 5px;
+}
+
+.admin-buttons {
+	padding: 10px 50px;
+	.edit, .delete {
+		color: #222;
+		background-repeat: no-repeat;
+		padding-left: 20px;
+	}
+	.edit { background-image: url('../images/site-images/edit.png'); margin-right: 10px; }
+	.delete { background-image: url('../images/site-images/delete.png'); }
+}

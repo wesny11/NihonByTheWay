@@ -1,10 +1,13 @@
-footer {
+.main-footer {
+	position: absolute;
+    left: 0;
+    bottom: 0;
 	background-color: #fff;
-	border-top: 1px solid $grey;
+    width: 100%;
+    border-top: 1px solid $grey;
 	padding-top: 10px;
 	.center {
 		width: 500px;
-		margin: 0 auto;		
 		li {
 			line-height: 2;
 			margin-right: 25px;

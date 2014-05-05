@@ -6,6 +6,7 @@
 	box-sizing: border-box;
 }
 
+// Clearfix
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -27,20 +28,13 @@ html[xmlns] .clearfix {
 	height: 1%;
 }
 
+// Sticky footer
 html {
     position: relative;
     min-height: 100%;
 }
 body {
-    margin: 0 0 55px; /* bottom = footer height */
-}
-
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 55px;
-    width: 100%;
+    margin: 0 0 32px; /* bottom = footer height */
 }
 
 .row {
@@ -59,13 +53,18 @@ footer {
 	}
 }
 
-.admin-buttons {
-	padding: 10px 50px;
-	.edit, .delete {
-		color: #222;
-		background-repeat: no-repeat;
-		padding-left: 20px;
-	}
-	.edit { background-image: url('../images/edit.png'); margin-right: 10px; }
-	.delete { background-image: url('../images/delete.png'); }
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.red {
+	color: red;
 }

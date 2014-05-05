@@ -1,0 +1,121 @@
+.main-header {
+	background: #fff;
+	border-bottom: 3px solid $grey;
+	min-height: 60px;
+	position: fixed;
+	z-index: 9999px;
+	width: 100%;
+
+	.logo {
+		background-image: url('../images/site-images/logo.png');
+		background-repeat: no-repeat;
+		color: #333;
+		float: left;
+		font-size: 1.5em;
+		padding: 2px 50px 0 75px;
+		margin: 0;
+		margin-top: 10px;
+		text-decoration: none;
+	}
+
+	.main-nav {
+		padding-top: 25px;
+		min-height: 60px;
+		li {
+			position: relative;			
+			margin-right: 50px;
+			min-height: 35px;
+			&:hover > ul { display: block; }
+
+			a {
+				color: #333;
+				text-decoration: none;
+				&:hover { color: $red; }
+			}
+
+			ul {
+				background-color: #fff;
+				border: 1px solid $grey;
+				border-top: 3px solid $grey;
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: -1%;
+				padding: 0;
+				margin: 0;
+				width: 148px;
+
+				li {
+					border-bottom: 1px solid $grey;				
+					padding: 15px;
+					width: 148px;
+					&:last-child { border-bottom: none; }
+
+					a {
+						color: #222;
+						text-decoration: none;
+						&:hover { color: $red; }
+					}
+				}
+			}	
+		}
+	}
+
+	.user-nav {
+		.welcome {
+			font-size: 12px;
+			padding-top: 15px;
+			padding-right: 25px;
+		}
+
+		.user, .shopping-cart {
+			display: block;
+			background-repeat: no-repeat;
+			background-position: center;
+			border-right: 1px solid $grey;			
+			min-height: 60px;
+			width: 75px;
+			&:hover { background-color: $red; }			
+			span { display: none; }
+		}
+		.user {
+			background-image: url('../images/site-images/user.png');
+			border-left: 1px solid $grey;		
+			&:hover { background-image: url('../images/site-images/user-white.png'); cursor: pointer; }
+		}
+		.shopping-cart {
+			background-image: url('../images/site-images/shopping-cart.png');		
+			&:hover { background-image: url('../images/site-images/shopping-cart-white.png'); cursor: pointer; }
+		}
+
+		li {
+			position: relative;
+			&:hover > ul { display: block; }
+
+			ul {
+				background-color: #fff;
+				border: 1px solid $grey;
+				border-top: 3px solid $grey;
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: -1%;
+				padding: 0;
+				margin: 0;
+
+				li {
+					border-bottom: 1px solid $grey;				
+					padding: 15px;
+					min-width: 148px;
+					&:last-child { border-bottom: none; }
+
+					a {
+						color: #222;
+						text-decoration: none;
+						&:hover { color: $red; }
+					}
+				}
+			}
+		}		
+	}
+}

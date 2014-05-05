@@ -1,214 +1,77 @@
+<?php
+	ini_set('display_startup_errors',1);
+	ini_set('display_errors',1);
+	error_reporting(-1);
+?>
+<?php
+	session_start();
+	include('mysql-connection.php');
+?>
 <!doctype html>
-
-<?php include("scripts/connect_to_mysql.php"); ?>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Products grid - 日本ByTheWay</title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
+	<title>Index - 日本ByTheWay</title>
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-	<header>
-		<?php include("header.php"); ?>		
-	</header> <!-- /Header -->
-	
-	<div class="breadcrumbs">
-		<?php 
-			$izbiraHeader = $_GET['izbira'];
-			include("breadcrumbs-grid.php");
-		?>
-	</div> <!-- /Breadcrumbs -->	
+	<header class="main-header">
+		<?php include('main-header.php'); ?>
+	</header>
 
-	<div class="content">
+	<div class="main-content">
 		<div class="row clearfix">
+			<?php if (isset($_SESSION['admin'])): ?>
+				<div class="add-product-button">
+					<a class="big-red" href="add-product.php">Dodaj</a>
+				</div>
+			<?php endif; ?>
 			<ul class="products-grid inline-list">
-				<?php 
-				if($izbiraHeader == 0){
-					$vse = mysql_query("SELECT * FROM hrana", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
+				<?php
+					$result = null;
+
+					if ($_GET['izbira'] == 0) {
+						$result = mysqli_query($connection, "SELECT * FROM hrana");
+					} else if ($_GET['izbira'] == 1) {
+						$result = mysqli_query($connection, "SELECT * FROM hrana WHERE VrstaHrane='Juhe'");
+					} else if ($_GET['izbira'] == 2) {
+						$result = mysqli_query($connection, "SELECT * FROM hrana WHERE VrstaHrane='Sushi'");
+					} else if ($_GET['izbira'] == 3) {
+						$result = mysqli_query($connection, "SELECT * FROM hrana WHERE VrstaHrane='Sladice'");
+					} else if ($_GET['izbira'] == 4) {
+						$result = mysqli_query($connection, "SELECT * FROM hrana WHERE VrstaHrane='Ostalo'");
+					} else if ($_GET['izbira'] == 5) {
+						$result = mysqli_query($connection, "SELECT * FROM pijaca");
 					}
-					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vseJedi["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
-									<h4>' .$vseJedi["Ime"]. '</h4></a>
-									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
+					
+					if (mysqli_num_rows($result) != 0) {
+						while($vrstica = mysqli_fetch_array($result)) {
+							echo '<li>';							
+								echo '<div class="inner">';
+									echo '<div class="product-picture"><img src='.$vrstica["Slika"].' alt=""></div>';
+									echo '<div class="product-information">';
+										echo '<a href="product.php?izbira='.$_GET['izbira'].'&posamezna='.(!empty($vrstica["HranaID"])?$vrstica["HranaID"]:$vrstica["PijacaID"]).'"><h4>'.$vrstica["Ime"].'</h4></a>';
+										echo '<h5>'.$vrstica["Cena"].",00 €".'</h5>';
+									echo '</div>';
+								echo '</div>';
+								if (isset($_SESSION['admin'])) {
 									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
+								 			<a href="#" class="edit">Uredi</a>
+								 			<a href="#" class="delete">Izbriši</a>
+								 		</div>';
 								}
-							}
-						echo'</li>';
+							echo'</li>';
+						}
 					}
-				}
-				if($izbiraHeader == 1){
-					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Juhe'", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
-					}
-					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vseJedi["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
-									<h4>' .$vseJedi["Ime"]. '</h4></a>
-									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
-									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
-								}
-							}
-						echo'</li>';
-					}
-				}
-				if($izbiraHeader == 2){
-					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Sushi'", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
-					}
-					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vseJedi["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
-									<h4>' .$vseJedi["Ime"]. '</h4></a>
-									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
-									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
-								}
-							}
-						echo'</li>';
-					}
-				}
-				if($izbiraHeader == 3){
-					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Sladice'", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
-					}
-					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vseJedi["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
-									<h4>' .$vseJedi["Ime"]. '</h4></a>
-									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
-									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
-								}
-							}
-						echo'</li>';
-					}
-				}
-				if($izbiraHeader == 4){
-					$vse = mysql_query("SELECT * FROM hrana WHERE VrstaHrane='Ostalo'", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
-					}
-					while($vseJedi = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vseJedi["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vseJedi["HranaID"].'&zivilo=hrana&header='.$izbiraHeader.'">
-									<h4>' .$vseJedi["Ime"]. '</h4></a>
-									<h5>' .$vseJedi["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
-									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
-								}
-							}
-						echo'</li>';
-					}
-				}
-				if($izbiraHeader == 5){
-					$vse = mysql_query("SELECT * FROM pijaca", $connection);
-					if (!$vse) {
-						die("Ni našlo!" . mysql_error());
-					}
-					while($vsePijace = mysql_fetch_array($vse)){
-						echo '<li>
-							<div class="inner">
-								<div class="product-picture">
-									<img src='.$vsePijace["Slika"].' alt="">
-								</div>
-								<div class="product-information">
-									<a href="product.php?posamezna='.$vsePijace["PijacaID"].'&zivilo=pijaca&header='.$izbiraHeader.'">
-									<h4>' .$vsePijace["Ime"]. '</h4></a>
-									<h5>' .$vsePijace["Cena"].",00 €". '</h5>
-								</div>
-							</div>';
-							if (isset($_COOKIE["admin"])) {
-								$admin = $_COOKIE["admin"];	
-								if ($admin == 1) {
-									echo'<div class="admin-buttons">
-										<a href="#" class="edit">Uredi</a>
-										<a href="#" class="delete">Izbriši</a>
-									</div>';
-								}
-							}
-						echo'</li>';
-					}
-				}
-				if($izbiraHeader == 6){
-					//O nas - prestavitev restavracije in osebja
-				}
 				?>
-			</ul> <!-- /Product-grid -->			
+			</ul>
 		</div>
-	</div> <!-- /Content -->	
-		
-	<footer>
-		<?php include("footer.php"); ?>
-	</footer> <!-- /Footer -->	
+	</div>
+
+	<footer class="main-footer">
+		<?php include('main-footer.php'); ?>
+	</footer>
 </body>
 </html>
+<?php mysqli_close($connection); ?>

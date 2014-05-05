@@ -1,170 +1,132 @@
+<?php
+	ini_set('display_startup_errors',1);
+	ini_set('display_errors',1);
+	error_reporting(-1);
+?>
+<?php
+	session_start();
+	include('mysql-connection.php');
+?>
+<?php
+	$izbira = null;
+	$posamezna = null;
+	$product_result = null;
+	$comment_result = null;
+	$result = null;
+
+	if (isset($_GET['izbira']) && isset($_GET['posamezna'])) {
+		$izbira = intval($_GET['izbira']);
+		$posamezna = intval($_GET['posamezna']);
+
+		if ($izbira >= 0 && $izbira < 5) {
+			$product_result = mysqli_query($connection, "SELECT * FROM hrana WHERE HranaID='$posamezna'");
+			$comment_result = mysqli_query($connection, "SELECT * FROM komentarhrana WHERE Hrana_HranaID='$posamezna'");
+		} else if ($izbira == 5) {
+			$product_result = mysqli_query($connection, "SELECT * FROM pijaca WHERE PijacaID='$posamezna'");
+			$comment_result = mysqli_query($connection, "SELECT * FROM komentarpijaca WHERE Pijaca_PijacaID='$posamezna'");
+		} else {
+			die();
+		}
+
+		if (mysqli_num_rows($product_result) != 0) {
+			$data = mysqli_fetch_array($product_result);
+			$ime = $data[1];
+			$opis = $data[3];
+			$cena = $data[4];
+			$slika = $data[5];
+		} else {
+			die();
+		}
+	}
+?>
 <!doctype html>
-
-<?php include("scripts/connect_to_mysql.php"); ?>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Product - 日本ByTheWay</title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
+	<title>Index - 日本ByTheWay</title>
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-		
-	<header>
-		<?php include("header.php"); ?>		
-	</header> <!-- /Header -->
+	<header class="main-header">
+		<?php include('main-header.php'); ?>
+	</header>
 
-	<div class="breadcrumbs">
-		<?php 
-			$izbiraHeader=$_GET['header'];
-			$posamezna=$_GET['posamezna'];
-			$zivilo = $_GET['zivilo'];
-			include("breadcrumbs-single.php");
-		?>
-	</div> <!-- /Breadcrumbs -->
-
-	<div class="content">
+	<div class="main-content">
 		<div class="row clearfix">
-			<div class="product">
+			<div class="product">				
 				<div class="product-image">
-					<?php
-						if ($zivilo == 'hrana') {
-							$slika = mysql_query("SELECT Slika FROM hrana WHERE HranaID='$posamezna'", $connection);
-						} 
-						if ($zivilo == 'pijaca') {
-							$slika = mysql_query("SELECT Slika FROM pijaca WHERE PijacaID='$posamezna'", $connection);
-						}
-						if (!$slika) {
-							die("Slike ni našlo!" . mysql_error());
-						}
-						while($vrstica = mysql_fetch_array($slika)){
-							echo '<img src='.$vrstica["Slika"].' alt="Slika ni na voljo!">';
-						}
-					?>
-				</div>				
+					<img src="<?php echo $slika; ?>" alt="A big picture of sushi">
+				</div>
 				<div class="product-information">
 					<div class="name-and-price">
-						<h2><?php 
-							if ($zivilo == 'hrana') {
-								$ime = mysql_query("SELECT Ime FROM hrana WHERE HranaID='$posamezna'", $connection);
-							}
-							if ($zivilo == 'pijaca') {
-								$ime = mysql_query("SELECT Ime FROM pijaca WHERE PijacaID='$posamezna'", $connection);
-							}
-							if (!$ime) {
-								die("Imena ni našlo!" . mysql_error());
-							}
-							while($vrstica = mysql_fetch_array($ime)){
-								echo $vrstica[0];
-							}
-						echo '</h2>';
-						if (isset($_COOKIE["admin"])) {
-							$admin = $_COOKIE["admin"];	
-							if ($admin == 1) {
+						<h2><?php echo $ime; ?></h2>
+						<?php
+							if (isset($_SESSION['admin'])) {
 								echo'<div class="admin-buttons">
 									<a href="#" class="edit">Uredi</a>
 									<a href="#" class="delete">Izbriši</a>
 								</div>';
 							}
-						}
-						echo '<span class="price">'; 
-							if ($zivilo == 'hrana') {
-								$cena = mysql_query("SELECT Cena FROM hrana WHERE HranaID=$posamezna", $connection);
-							}
-							if ($zivilo == 'pijaca') {
-								$cena = mysql_query("SELECT Cena FROM pijaca WHERE PijacaID=$posamezna", $connection);
-							}
-							if (!$cena) {
-								die("Cene ni našlo!" . mysql_error());
-							}
-							while($vrstica = mysql_fetch_array($cena)){
-								echo $vrstica[0] . ",00 €";
-							}
-						?></span>
+						?>
+						<span class="price"><?php echo $cena.',00 €'; ?></span>
 					</div>
 					<div class="order">
 						<label for="quantity">Količina:</label>
 						<input type="text" name="quantity" value="">
-						<button type="submit">Dodaj v naročilo</button>
+						<button class="big-red" type="submit">Dodaj v naročilo</button>
 					</div>
 					<div class="description">
 						<h4>Opis</h4>
-						<p class="description"><?php 
-							if ($zivilo == 'hrana') {
-								$opis = mysql_query("SELECT Opis FROM hrana WHERE HranaID=$posamezna", $connection);
-							}
-							if ($zivilo == 'pijaca') {
-								$opis = mysql_query("SELECT Opis FROM pijaca WHERE PijacaID=$posamezna", $connection);
-							}
-							if (!$opis) {
-								die("Opisa ni našlo!" . mysql_error());
-							}
-							while($vrstica = mysql_fetch_array($opis)){
-								echo $vrstica[0];
-							}
-						?></p>
-					</div>					
-				</div> <!-- /Product-information -->
+						<p class="description"><?php echo $opis; ?></p>
+					</div>
+				</div>
+				<div class="row clearfix"></div>
 				<div class="comments">
-					<h2>Komentarji</h2><?php
-						if ($zivilo == 'hrana') {
-							$komentarji = mysql_query("SELECT * FROM komentarhrana WHERE Hrana_HranaID=$posamezna", $connection);
-						}
-						if ($zivilo == 'pijaca') {
-							$komentarji = mysql_query("SELECT * FROM komentarpijaca WHERE Pijaca_PijacaID=$posamezna", $connection);
-						}
-						if (!$komentarji) {
-							die("Komentarjev ni našlo!" . mysql_error());
-						}
-						while($komentar = mysql_fetch_array($komentarji)){
-							echo '<div class="single-comment">
-								<div class="author">';
-									$idAvtor = $komentar["Uporabnik_UporabnikID"];
-									$avtor = mysql_query("SELECT Ime,Priimek FROM uporabniki WHERE UporabnikID=$idAvtor", $connection);
-									if (!$avtor) {
-										die("Komentarja ni našlo!" . mysql_error());
-									}
-									while($vrstica = mysql_fetch_array($avtor)){
-										echo '<span>'.$vrstica[0]." ".$vrstica[1].'</span>';
-									}
-								echo '</div>
-								<div class="text">
-									<p>'.$komentar["Vsebina"].'</p>
-								</div>
-							</div>';
-						}
-					if (isset($_COOKIE["uporabnik"])) { //če je nekdo prijavljen in to ni admin, dovoli oddajo komentarja
-						if (isset($_COOKIE["admin"])) {
-							$admin = $_COOKIE["admin"];	
-							if ($admin == 0) {
-								echo'<div class="comment-form">
-									<div>
-										<input type="text" name="name" class="name" value="" placeholder="Ime">
-									</div>
-									<div>
-										<input type="email" name="email" class="email" value="" placeholder="Email">
-									</div>
-									<div>
-										<textarea rows="10" name="comment" class="comment" placeholder="Komentar"></textarea>
-									</div>
-									<div>
-										<input type="submit" name="submit" value="Oddaj komentar">
-									</div>						
-								</div>';
+					<h2>Komentarji</h2>
+					<?php
+						if (mysqli_num_rows($comment_result) != 0) {
+							while ($vrstica = mysqli_fetch_array($comment_result)) {
+								$id = $vrstica['Uporabnik_UporabnikID'];
+								$result = mysqli_query($connection, "SELECT Ime, Priimek FROM uporabniki WHERE UporabnikID=$id");
+								if (mysqli_num_rows($result) != 0) {
+									$user = mysqli_fetch_array($result);
+									echo '<div class="single-comment">';
+									echo '<div class="author"><span>'.$user[0]." ".$user[1].'</span></div>';
+									echo '<div class="text"><p>'.$vrstica['Vsebina'].'</p></div>';
+									echo '</div>';
+								}				
 							}
+						} else {
+							echo '<div class="single-comment">';						
+							echo '<div class="text"><p>Ni komentarjev</p></div>';
+							echo '</div>';
 						}
-					}
 					?>
-				</div> <!-- /Comments -->
-			</div>	
-		</div>
-	</div> <!-- /Content -->
+					<?php if(isset($_SESSION['user'])): ?>
+						<div class="comment-form">
+							<div>
+								<input type="text" name="name" class="name" value="" placeholder="Ime">
+							</div>
+							<div>
+								<input type="email" name="email" class="email" value="" placeholder="Email">
+							</div>
+							<div>
+								<textarea rows="10" name="comment" class="comment" placeholder="Komentar"></textarea>
+							</div>
+							<div>
+								<input type="submit" name="submit" value="Oddaj komentar">
+							</div>						
+						</div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>		
+	</div>
 
-	<footer>
-		<?php include("footer.php"); ?>
-	</footer> <!-- /Footer -->
+	<footer class="main-footer">
+		<?php include('main-footer.php'); ?>
+	</footer>
 </body>
 </html>
-
-<?php mysql_close($connection); ?>
+<?php mysqli_close($connection); ?>
