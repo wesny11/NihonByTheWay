@@ -17,7 +17,47 @@
 
 	if (isset($_POST['submit'])) {
 		$ime = $_POST['name'];
-		$hranapjaca = $_POST['foodvsdrink'];
+		$vrsta = $_POST['foodvsdrink'];
+		$vrsta_hrane = $_POST['category'];
+		$opis = $_POST['description'];
+		$cena = $_POST['price'];
+		$slika = $_FILE['image'];
+
+		$valid = true;
+
+		if (empty($ime)) {
+			$name_error = 'Prosim vnesite ime';
+			$valid = false;
+		}
+
+		if (empty($description)) {
+			$description_error = 'Prosim vnesite opis';
+			$valid = false;
+		}
+
+		if (empty($price)) {
+			$price_error = 'Prosim vnesite ceno';
+			$valid = false;
+		}
+
+		if (empty($image)) {
+			$image_error = 'Prosim naložite sliko';
+			$valid = false;
+		}
+
+		if ($valid) {
+			if ($vrsta == "hrana") {
+				$result = mysqli_query($connection, "INSERT INTO hrana (Ime, VrstaHrane, Opis, Cena, Slika)
+														VALUES ($ime, $vrsta_hrane, $opis, $cena, $slika)");				
+			} else {
+				$result = mysqli_query($connection, "INSERT INTO pijaca (Ime, VrstaPijace, Opis, Cena, Slika)
+														VALUES ($ime, 'alkoholna', $opis, $cena, $slika)");
+			}
+
+			if (mysqli_affected_rows() == 1) {
+				echo 'Izdelek je bil uspešno dodan';
+			}
+		}
 	}
 ?>
 <!doctype html>
@@ -40,9 +80,12 @@
 			<div class="add-product center">
 				<h2>Dodaj hrano/pijačo</h2>
 				<form action="" method="post">
+					<?php if (!empty($name_error)): ?>
+						<span><?php echo $name_error; ?></span>
+					<?php endif; ?>
 					<p>						
 						<label>Ime:</label>
-						<input type="text" name="name" value="" />
+						<input type="text" name="name" value="<?php echo $ime; ?>" />
 					</p>
 
 					<p>
@@ -62,17 +105,26 @@
 							<option value="ostale-jedi">Ostale jedi</option>
 						</select>
 					</p>
-
+					
+					<?php if (!empty($description_error)): ?>
+						<span><?php echo $description_error; ?></span>
+					<?php endif; ?>
 					<p>
 						<label class="fix-align">Opis:</label><br>
-						<textarea></textarea>
+						<textarea name="description"><?php echo $opis; ?></textarea>
 					</p>
 
+					<?php if (!empty($price_error)): ?>
+						<span><?php echo $price_error; ?></span>
+					<?php endif; ?>
 					<p>
 						<label>Cena:</label>
-						<input type="text" name="price" value="" />
+						<input type="text" name="price" value="<?php echo $cena; ?>" />
 					</p>
 
+					<?php if (!empty($image_error)): ?>
+						<span><?php echo $image_error; ?></span>
+					<?php endif; ?>
 					<p>
 						<label>Slika:</label>
 						<input type="file" name="image" />
