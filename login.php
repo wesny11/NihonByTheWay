@@ -58,7 +58,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Register - 日本ByTheWay</title>
+	<title>Prijava - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 </head>

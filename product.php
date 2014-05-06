@@ -43,7 +43,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Index - 日本ByTheWay</title>
+	<title>Izdelek - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 </head>
@@ -64,9 +64,9 @@
 						<?php
 							if (isset($_SESSION['admin'])) {
 								echo'<div class="admin-buttons">
-									<a href="#" class="edit">Uredi</a>
-									<a href="delete-product.php" class="delete">Izbriši</a>
-								</div>';
+							 			<a href="edit-product.php?'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="edit">Uredi</a>
+							 			<a href="delete-product.php?izbira='.$_GET['izbira'].'&'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="delete">Izbriši</a>
+							 		</div>';
 							}
 						?>
 						<span class="price"><?php echo $cena.',00 €'; ?></span>

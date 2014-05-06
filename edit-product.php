@@ -8,12 +8,7 @@
 	include('mysql-connection.php');
 ?>
 <?php
-	$ime = null;
-	$vrsta = null;
-	$vrsta_hrane = null;
-	$opis = null;
-	$cena = null;
-	$slika = null;
+	$result = null;
 	$success = false;
 
 	function image_upload($name, $size, $tmp) {
@@ -44,14 +39,30 @@
 		return $errors;
 	}
 
-	if (isset($_POST['submit'])) {
+	// Prvo nalaganje strani
+	if (!isset($_POST['submit'])) {
+		if (isset($_GET['hranaid'])) {
+			$result = mysqli_query($connection, 'SELECT * FROM hrana WHERE HranaId='.$_GET['hranaid']);
+		} else if (isset($_GET['pijacaid'])) {
+			$result = mysqli_query($connection, 'SELECT * FROM pijaca WHERE PijacaId='.$_GET['pijacaid']);
+		}
+
+		if ($result) {
+			$product = mysqli_fetch_array($result);
+			$ime = $product['Ime'];
+			$vrsta = !empty($product['VrstaHrane'])?$product['VrstaHrane']:null;
+			$opis = $product['Opis'];
+			$cena = $product['Cena'];		
+		} else {
+			die();
+		}
+	} else {
+		// Kliknen gumb shrani
 		$ime = $_POST['name'];
-		$vrsta = $_POST['foodvsdrink'];
-		$vrsta_hrane = $_POST['category'];
+		$vrsta = $_POST['category'];
 		$opis = $_POST['description'];
 		$cena = $_POST['price'];
 		$slika = $_FILES['image']['name'];
-
 		$valid = true;
 
 		if (empty($ime)) {
@@ -69,19 +80,16 @@
 			$valid = false;
 		}
 
-		if (empty($slika)) {
-			$image_error = 'Prosim naložite sliko';
-			$valid = false;
-		} else if (!empty(image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name']))) {
+		if (!empty($slika) && !empty(image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name']))) {
 			$image_error = 'Napaka pri nalaganju slike';
 			$valid = false;
 		}
 
 		if ($valid) {			
-			if ($vrsta == "hrana") {
-				$success = mysqli_query($connection, "INSERT INTO hrana (Ime, VrstaHrane, Opis, Cena, Slika) VALUES ('$ime', '$vrsta_hrane', '$opis', '$cena', 'images/$slika')");
+			if (isset($_GET['hranaid'])) {
+				$success = mysqli_query($connection, "UPDATE hrana SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE HranaId=".$_GET['hranaid']);
 			} else {
-				$success = mysqli_query($connection, "INSERT INTO pijaca (Ime, VrstaPijace, Opis, Cena, Slika) VALUES ('$ime', 'alkoholna', '$opis', '$cena', 'images/$slika')");
+				$success = mysqli_query($connection, "UPDATE pijaca SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE PijacaId=".$_GET['pijacaid']);
 			}
 		}
 	}
@@ -90,7 +98,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Dodajanje - 日本ByTheWay</title>
+	<title>Urejanje - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 
@@ -102,12 +110,12 @@
 	</header>
 
 	<div class="main-content">
-		<div class="row">			
-			<div class="add-product center">
+		<div class="row">
+			<div class="edit-product center">
 				<?php if ($success): ?>
-					<h3 class="green">Izdelek je bil uspešno dodan</h3>
+					<h3 class="green">Izdelek je bil uspešno posodobljen</h3>
 				<?php else: ?>
-					<h2>Dodaj hrano/pijačo</h2>
+					<h2>Uredi hrano/pijačo</h2>
 					<form action="" method="post" enctype="multipart/form-data">
 						<?php if (!empty($name_error)): ?>
 							<span><?php echo $name_error; ?></span>
@@ -116,24 +124,18 @@
 							<label>Ime:</label>
 							<input type="text" name="name" value="<?php echo $ime; ?>" />
 						</p>
-
-						<p>
-							<label>Vrsta:</label>
-							<select name="foodvsdrink" class="isfood">
-								<option value="hrana">Hrana</option>
-								<option value="pijaca">Pijača</option>
-							</select>
-						</p>
-
-						<p class="isvisible">
-							<label>Vrsta hrane:</label>
-							<select name="category">
-								<option value="Juhe">Juhe</option>
-								<option value="Sushi">Sushi</option>
-								<option value="Sladice">Sladice</option>
-								<option value="Ostalo">Ostale jedi</option>
-							</select>
-						</p>
+						
+						<?php if (isset($_GET['hranaid'])): ?>
+							<p>
+								<label>Vrsta hrane:</label>
+								<select name="category">
+									<option value="Juhe" <?php if ($vrsta=="Juhe") echo "selected" ?>>Juhe</option>
+									<option value="Sushi" <?php if ($vrsta=="Sushi") echo "selected" ?>>Sushi</option>
+									<option value="Sladice" <?php if ($vrsta=="Sladice") echo "selected" ?>>Sladice</option>
+									<option value="Ostalo" <?php if ($vrsta=="Ostalo") echo "selected" ?>>Ostale jedi</option>
+								</select>
+							</p>
+						<?php endif; ?>
 						
 						<?php if (!empty($description_error)): ?>
 							<span><?php echo $description_error; ?></span>
@@ -158,26 +160,16 @@
 							<label>Slika:</label>
 							<input type="file" name="image" />
 						</p>
-						<button class="big-red" type="submit" name="submit">Dodaj</button>
+						<button class="big-red" type="submit" name="submit">Shrani</button>
 					</form>
 				<?php endif; ?>
 			</div>
-		</div>
+		</div>		
 	</div>
 
 	<footer class="main-footer">
 		<?php include('main-footer.php'); ?>
 	</footer>
-
-	<script>
-		$('.isfood').change(function() {
-			if ($(this).val() == "pijaca") {
-				$('.isvisible').css('display', 'none');
-			} else {
-				$('.isvisible').css('display', 'block');
-			}
-		})
-	</script>
 </body>
 </html>
 <?php mysqli_close($connection); ?>

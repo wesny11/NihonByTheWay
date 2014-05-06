@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Index - 日本ByTheWay</title>
+	<title>O nas - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 </head>
@@ -27,7 +27,7 @@
 					<img src="images/ekipa2.jpg" alt="">
 				</div>
 				<h2>Spoznajte nas bolje!</h2>
-				<p><span class="red">日本ByTheWay</span> je ena prvih japonskih restavracij v Sloveniji, ki ponuja zgolj dostavo na dom. Restavracija je opremljena v elegantnem ambientu in pri osebnem prevzemu jedi pričara edinstveno vzdušje. S pestrim izborom priljubljenih japonskih jedi, vas vabimo na popotovanje po okusih Daljnega vzhoda, spoznavanje japonske kulture in prijetno doživetje ‘nečesa drugačnega’.</p>
+				<p><span class="red">日本ByTheWay</span> je ena prvih japonskih restavracij v Sloveniji, ki ponuja zgolj dostavo na dom. Restavracija je opremljena v elegantnem ambientu in pri osebnem prevzemu jedi pričara edinstveno vzdušje. S pestrim izborom priljubljenih japonskih jedi, vas vabimo na popotovanje po okusih Daljnega vzhoda, spoznavanje japonske kulture in prijetno doživetje ‘nečesa drugačnega’.</p><br>
 				<p>Restavracija se nahaja v mirnem okolišu ob Koseškem bajerju, na Kmečki poti 28 v Ljubljani.</p>
 				<p>Telefon: <span class="red">01 123 456</span></p>
 			</div>

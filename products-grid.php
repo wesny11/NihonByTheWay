@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Index - 日本ByTheWay</title>
+	<title>Seznam hrane in pijače - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 </head>
@@ -60,7 +60,7 @@
 								echo '</div>';
 								if (isset($_SESSION['admin'])) {
 									echo'<div class="admin-buttons">
-								 			<a href="#" class="edit">Uredi</a>
+								 			<a href="edit-product.php?'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="edit">Uredi</a>
 								 			<a href="delete-product.php?izbira='.$_GET['izbira'].'&'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="delete">Izbriši</a>
 								 		</div>';
 								}
