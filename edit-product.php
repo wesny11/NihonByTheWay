@@ -80,7 +80,7 @@
 			$valid = false;
 		}
 
-		if (!empty($slika) && !empty(image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name']))) {
+		if (!empty($slika) && image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name'])) {
 			$image_error = 'Napaka pri nalaganju slike';
 			$valid = false;
 		}

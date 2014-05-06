@@ -28,7 +28,7 @@
 		$file_tmp = $tmp;
 
 		if ( ! in_array($file_ext, $allowed_ext) ) {
-			$errors[] = 'Nedovoljena kratica';
+			$errors[] = 'Nedovoljena končnica';
 
 		}
 
@@ -72,7 +72,7 @@
 		if (empty($slika)) {
 			$image_error = 'Prosim naložite sliko';
 			$valid = false;
-		} else if (!empty(image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name']))) {
+		} else if (image_upload($_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name'])) {
 			$image_error = 'Napaka pri nalaganju slike';
 			$valid = false;
 		}
