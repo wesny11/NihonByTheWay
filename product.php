@@ -65,7 +65,7 @@
 							if (isset($_SESSION['admin'])) {
 								echo'<div class="admin-buttons">
 									<a href="#" class="edit">Uredi</a>
-									<a href="#" class="delete">Izbriši</a>
+									<a href="delete-product.php" class="delete">Izbriši</a>
 								</div>';
 							}
 						?>

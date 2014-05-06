@@ -22,11 +22,14 @@
 
 	<div class="main-content">
 		<div class="row clearfix">
+			<?php if (isset($_GET['s'])): ?>
+				<h3 class="green">Izdelek je bil uspešno izbrisan</h3>
+			<?php endif; ?>
 			<?php if (isset($_SESSION['admin'])): ?>
 				<div class="add-product-button">
 					<a class="big-red" href="add-product.php">Dodaj</a>
 				</div>
-			<?php endif; ?>
+			<?php endif; ?>			
 			<ul class="products-grid inline-list">
 				<?php
 					$result = null;
@@ -58,7 +61,7 @@
 								if (isset($_SESSION['admin'])) {
 									echo'<div class="admin-buttons">
 								 			<a href="#" class="edit">Uredi</a>
-								 			<a href="#" class="delete">Izbriši</a>
+								 			<a href="delete-product.php?izbira='.$_GET['izbira'].'&'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="delete">Izbriši</a>
 								 		</div>';
 								}
 							echo'</li>';
