@@ -62,14 +62,14 @@
 				<div class="product-information">
 					<div class="name-and-price">
 						<h2><?php echo $ime; ?></h2>
-<!-- 						<?php
+						<?php
 							if (isset($_SESSION['admin'])) {
 								echo'<div class="admin-buttons">
-							 			<a href="edit-product.php?'.($_GET['izbira']?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="edit">Uredi</a>
-							 			<a href="delete-product.php?izbira='.$_GET['izbira'].'&'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="delete">Izbriši</a>
+							 			<a href="edit-product.php?'.($izbira!=5?"hranaid=".$id:"pijacaid=".$id).'" class="edit">Uredi</a>
+							 			<a href="delete-product.php?izbira='.$izbira.'&'.($izbira!=5?"hranaid=".$id:"pijacaid=".$id).'" class="delete">Izbriši</a>
 							 		</div>';
 							}
-						?> -->
+						?>
 						<span class="price"><?php echo $cena.',00 €'; ?></span>
 					</div>
 					<div class="order">
