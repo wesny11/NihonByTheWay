@@ -30,6 +30,7 @@
 
 		if (mysqli_num_rows($product_result) != 0) {
 			$data = mysqli_fetch_array($product_result);
+			$id = $data[0];
 			$ime = $data[1];
 			$opis = $data[3];
 			$cena = $data[4];
@@ -61,14 +62,14 @@
 				<div class="product-information">
 					<div class="name-and-price">
 						<h2><?php echo $ime; ?></h2>
-						<?php
+<!-- 						<?php
 							if (isset($_SESSION['admin'])) {
 								echo'<div class="admin-buttons">
-							 			<a href="edit-product.php?'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="edit">Uredi</a>
+							 			<a href="edit-product.php?'.($_GET['izbira']?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="edit">Uredi</a>
 							 			<a href="delete-product.php?izbira='.$_GET['izbira'].'&'.(!empty($vrstica["HranaID"])?"hranaid=".$vrstica["HranaID"]:"pijacaid=".$vrstica["PijacaID"]).'" class="delete">Izbriši</a>
 							 		</div>';
 							}
-						?>
+						?> -->
 						<span class="price"><?php echo $cena.',00 €'; ?></span>
 					</div>
 					<div class="order">
