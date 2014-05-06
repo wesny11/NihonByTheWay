@@ -446,3 +446,20 @@ a.big-red:hover, button.big-red:hover {
   max-width: 900px;
   margin: 0 auto;
 }
+.main-content .gallery {
+  position:relative;
+  height:360px;
+}
+.main-content .gallery a {
+  position:absolute;
+}
+.main-content .gallery a img {
+  border:none;
+  text-align: center;
+}
+.main-content .gallery a.show {
+  z-index:500;
+}
+.clear {
+  clear:both;
+}
