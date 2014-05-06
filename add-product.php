@@ -28,7 +28,7 @@
 		$file_tmp = $tmp;
 
 		if ( ! in_array($file_ext, $allowed_ext) ) {
-			$errors[] = 'Nedovoljena kratica';
+			$errors[] = 'Nedovoljena končnica';
 
 		}
 
