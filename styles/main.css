@@ -458,24 +458,15 @@ a.big-red:hover, button.big-red:hover {
 }
 .main-content .product .comments .comment-form {
   clear: both;
-  padding: 10px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
-.main-content .product .comments .comment-form input, .main-content .product .comments .comment-form textarea {
+.main-content .product .comments .comment-form textarea {
   border: 1px solid #d4d4d4;
   padding: 8px 10px;
   border-radius: 5px;
   outline: 0;
-  margin-bottom: 10px;
-}
-.main-content .product .comments .comment-form textarea {
+  margin-bottom: -5px;
   width: 350px;
-}
-.main-content .product .comments .comment-form input[type="submit"] {
-  color: #222;
-}
-.main-content .product .comments .comment-form input[type="submit"]:hover {
-  color: #fff;
 }
 .main-content .about-us {
   text-align: center;

@@ -184,24 +184,15 @@
 			}
 			.comment-form {
 				clear: both;
-				padding: 10px;
-				margin-top: 20px;
+				margin-top: 40px;
 
-				input, textarea {
+				textarea {
 					border: 1px solid $grey;
 					padding: 8px 10px;
 					border-radius: 5px;		
 					outline: 0;
-					margin-bottom: 10px;
-				}
-
-				textarea {
+					margin-bottom: -5px;
 					width: 350px;
-				}
-
-				input[type="submit"] {
-					color: #222;
-					&:hover { color: #fff; }
 				}
 			}		
 		}

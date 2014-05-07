@@ -38,9 +38,11 @@
 				$vrstica = mysqli_fetch_array($result);
 				if ($vrstica['Geslo'] == $geslo) {					
 					if ($vrstica['JeAdmin'] == 1) {
-						$_SESSION['admin'] = $vrstica['Ime'];					
+						$_SESSION['admin'] = $vrstica['Ime'];
+						$_SESSION['admin_id'] = $vrstica['UporabnikID'];
 					} else {
 						$_SESSION['user'] = $vrstica['Ime'];
+						$_SESSION['user_id'] = $vrstica['UporabnikID'];
 					}
 
 					header('Location: index.php');

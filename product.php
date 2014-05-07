@@ -39,6 +39,22 @@
 			die();
 		}
 	}
+
+	if (isset($_POST['submit-comment'])) {
+		$text = $_POST['comment'];
+		$user_id = $_SESSION['user_id'];
+		if ($izbira >= 0 && $izbira < 5) {			
+			$new_comment = mysqli_query($connection, "INSERT INTO komentarhrana (Hrana_HranaID, Uporabnik_UporabnikID, Vsebina, Ocena) VALUES('$posamezna', '$user_id', '$text', '5')");
+		} else if ($izbira == 5) {
+			$new_comment = mysqli_query($connection, "INSERT INTO komentarpijaca (Pijaca_PijacaID, Uporabnik_UporabnikID, Vsebina, Ocena) VALUES('$posamezna', '$user_id', '$text', '5')");
+		}
+
+		if (!$new_comment) {
+			echo '<p class="red">Prišlo je do napake</p>';
+		} else {
+			echo '<script>location.reload()</script>';
+		}
+	}
 ?>
 <!doctype html>
 <html lang="en">
@@ -102,23 +118,15 @@
 							echo '<div class="single-comment">';						
 							echo '<div class="text"><p>Ni komentarjev</p></div>';
 							echo '</div>';
-						}
+						}						
 					?>
 					<?php if(isset($_SESSION['user'])): ?>
-						<div class="comment-form">
-							<div>
-								<input type="text" name="name" class="name" value="" placeholder="Ime">
-							</div>
-							<div>
-								<input type="email" name="email" class="email" value="" placeholder="Email">
-							</div>
-							<div>
+						<form class="comment-form" method="post">
+							<p>
 								<textarea rows="10" name="comment" class="comment" placeholder="Komentar"></textarea>
-							</div>
-							<div>
-								<input type="submit" name="submit" value="Oddaj komentar">
-							</div>						
-						</div>
+							</p>
+							<button class="big-red" type="submit" name="submit-comment">Oddaj komentar</button>					
+						</form>
 					<?php endif; ?>
 				</div>
 			</div>
