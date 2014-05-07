@@ -63,6 +63,16 @@
 	<title>Izdelek - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+		function generateCart(pid, pcat) {
+			var qty = $('#quantity').val();
+			var url = 'basket.php?pid='+pid+'&pcat='+pcat+'&qt='+qty;
+			window.location.href = url;
+		}
+	</script>
 </head>
 <body>
 	<header class="main-header">
@@ -90,12 +100,13 @@
 					</div>
 					<div class="order">
 						<label for="quantity">Količina:</label>
-						<input id="quantity" type="text" name="quantity" value="" onkeyup="getValue(this.value)">
+						<input id="quantity" type="text" name="quantity" value="">
 						<?php
 							$pid = $id;
 							$pcat = $_GET['izbira']!=5?'h':'p';
 							//$qt = echo '<script>var x = document.getElementById("quantity").value;</script>';
-							echo '<a class="big-red" href="basket.php?pid='.$pid.'&pcat='.$pcat.'&qt=1">Dodaj v naročilo</a>';
+							$pcat = "'".$pcat."'";
+							echo '<a onclick="generateCart('.$pid.', '.$pcat.');" class="big-red">Dodaj v naročilo</a>';
 						?>						
 					</div>
 					<div class="description">
@@ -142,11 +153,6 @@
 		<?php include('main-footer.php'); ?>
 	</footer>
 
-	<script>
-		$(getValue(var val) {
-
-		});
-	</script>
 </body>
 </html>
 <?php mysqli_close($connection); ?>
