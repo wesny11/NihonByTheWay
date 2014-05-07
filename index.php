@@ -14,7 +14,7 @@
 	<title>Index - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
-	<script src="jquery-1.11.1.min.js"></script>
+	<script src="scripts/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 	<header class="main-header">
