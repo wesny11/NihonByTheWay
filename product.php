@@ -90,8 +90,13 @@
 					</div>
 					<div class="order">
 						<label for="quantity">Količina:</label>
-						<input type="text" name="quantity" value="">
-						<button class="big-red" type="submit">Dodaj v naročilo</button>
+						<input id="quantity" type="text" name="quantity" value="" onkeyup="getValue(this.value)">
+						<?php
+							$pid = $id;
+							$pcat = $_GET['izbira']!=5?'h':'p';
+							//$qt = echo '<script>var x = document.getElementById("quantity").value;</script>';
+							echo '<a class="big-red" href="basket.php?pid='.$pid.'&pcat='.$pcat.'&qt=1">Dodaj v naročilo</a>';
+						?>						
 					</div>
 					<div class="description">
 						<h4>Opis</h4>
@@ -136,6 +141,12 @@
 	<footer class="main-footer">
 		<?php include('main-footer.php'); ?>
 	</footer>
+
+	<script>
+		$(getValue(var val) {
+
+		});
+	</script>
 </body>
 </html>
 <?php mysqli_close($connection); ?>
