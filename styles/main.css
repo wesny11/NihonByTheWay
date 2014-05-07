@@ -124,7 +124,7 @@ a.big-red:hover, button.big-red:hover {
   border-bottom: 3px solid #d4d4d4;
   min-height: 60px;
   position: fixed;
-  z-index: 9999px;
+  z-index: 9999;
   width: 100%;
 }
 .main-header .logo {
@@ -283,18 +283,40 @@ a.big-red:hover, button.big-red:hover {
 /* Center the slideshow */
 .slides-container {
   margin: 0 auto;
-  border: 3px solid #d4d4d4;
-  border-radius: 3px;
-}
-
-/* Show active item in the pagination */
-.slidesjs-pagination .active {
-  color: red;
+  margin-top: -37px;
+  max-width: 1920px;
+  z-index: 10;
 }
 
 .main-content {
   padding-top: 100px;
   padding-bottom: 40px;
+}
+.main-content .index-content {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: -50px;
+}
+.main-content .index-content img {
+  height: 200px;
+  border-radius: 8px;
+}
+.main-content .index-content .text {
+  width: 500px;
+}
+.main-content .index-content .text p {
+  line-height: 1.5;
+}
+.main-content .index-content .even, .main-content .index-content .odd {
+  margin-bottom: 50px;
+}
+.main-content .index-content .even .text {
+  float: left;
+  margin-right: 97px;
+}
+.main-content .index-content .odd .text {
+  float: right;
+  margin-left: 97px;
 }
 .main-content .add-product, .main-content .edit-product, .main-content .register, .main-content .login {
   background-color: #fff;

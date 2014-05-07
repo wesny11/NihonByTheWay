@@ -1,16 +1,12 @@
 /* Prevent the slideshow from flashing on load */
 #slides {
-	display: none;
+	display: none;	
 }
 
 /* Center the slideshow */
 .slides-container {
 	margin: 0 auto;
-	border: 3px solid $grey;
-	border-radius: 3px;
-}
-
-/* Show active item in the pagination */
-.slidesjs-pagination .active {
-	color:red;
+	margin-top: -37px;
+	max-width: 1920px;
+	z-index: 10;
 }

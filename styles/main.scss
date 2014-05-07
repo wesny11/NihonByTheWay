@@ -9,6 +9,21 @@
 	padding-top: 100px;
 	padding-bottom: 40px;
 
+	.index-content {
+		width: 900px;
+		margin: 0 auto;
+		margin-top: -50px;
+
+		img { height: 200px; border-radius: 8px; }
+		.text {
+			width: 500px;
+			p { line-height: 1.5; }
+		}
+		.even, .odd { margin-bottom: 50px; }
+		.even .text { float: left; margin-right: 97px; }
+		.odd .text { float: right; margin-left: 97px; }
+	}
+
 	.add-product, .edit-product, .register, .login {
 		background-color: #fff;
 		border: 1px solid $grey;
