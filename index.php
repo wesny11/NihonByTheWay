@@ -35,24 +35,24 @@
 			<div class="index-content">
 				<div class="even">
 					<div class="text">
-						<h3>Spoznajte sushi na <span class="red">spletu</span>.</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quos, quisquam, sunt aliquid voluptatem eum aut nesciunt consequatur aspernatur unde recusandae facilis neque ipsam ipsum iste voluptatum culpa incidunt voluptatibus.</p>
+						<h3>SPOMLADANSKI SUSHI</h3>
+						<p>V mesecu Maju smo za vas pripravili posebno ponudbo – <span class="red">Uramaki sushi</span> z okusom pomladi.</p>
 					</div>					
-					<img src="images/Inari.JPG" alt="">
+					<img src="images/spomladanski_sushi.JPG" alt="">
 				</div>
 				<div class="odd clearfix">
 					<div class="text">
-						<h3>Enostavno naročanje in hitra dostava.</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, expedita dolorum perferendis incidunt blanditiis molestias laborum asperiores! Molestias, fuga vitae earum quae suscipit modi dolor nulla tenetur impedit laborum hic.</p>
+						<h3>PANDE</h3>
+						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushii v obliki pande.</p>
 					</div>
-					<img src="images/Norimaki.jpg" alt="">				
+					<img src="images/pande.jpeg" alt="">				
 				</div>
 				<div class="even clearfix">
 					<div class="text">
-						<h3>Svežina in kakovost.</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, debitis, tempora, quibusdam, ipsam iste sunt quae necessitatibus autem molestiae pariatur quod porro nihil magnam molestias possimus reprehenderit repellendus laboriosam iure.</p>
+						<h3>MICROSOFTOVA NT KONFERENCA</h3>
+						<p>Januarja je v Ljubljani potekala že druga Microsoftova NT konferenca. V čast nam je bilo, da smo tehnološke strokovnjake lahko postregli z edinstvenim Microsoftovim sushijem.</p>
 					</div>
-					<img src="images/Tonkatsu.jpg" alt="">
+					<img src="images/microsoftova_konferenca.jpg" alt="">
 				</div>
 			</div>
 		</div>	
