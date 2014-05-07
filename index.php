@@ -38,21 +38,21 @@
 						<h3>Spoznajte sushi na <span class="red">spletu</span>.</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quos, quisquam, sunt aliquid voluptatem eum aut nesciunt consequatur aspernatur unde recusandae facilis neque ipsam ipsum iste voluptatum culpa incidunt voluptatibus.</p>
 					</div>					
-					<img src="images/Inari.JPG" alt="">
+					<img src="images/spring.jpg" alt="">
 				</div>
 				<div class="odd clearfix">
 					<div class="text">
 						<h3>Enostavno naročanje in hitra dostava.</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, expedita dolorum perferendis incidunt blanditiis molestias laborum asperiores! Molestias, fuga vitae earum quae suscipit modi dolor nulla tenetur impedit laborum hic.</p>
 					</div>
-					<img src="images/Norimaki.jpg" alt="">				
+					<img src="images/pande.JPEG" alt="">				
 				</div>
 				<div class="even clearfix">
 					<div class="text">
 						<h3>Svežina in kakovost.</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, debitis, tempora, quibusdam, ipsam iste sunt quae necessitatibus autem molestiae pariatur quod porro nihil magnam molestias possimus reprehenderit repellendus laboriosam iure.</p>
 					</div>
-					<img src="images/Tonkatsu.jpg" alt="">
+					<img src="images/microsoft.jpg" alt="">
 				</div>
 			</div>
 		</div>	
