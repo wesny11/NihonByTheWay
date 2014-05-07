@@ -28,8 +28,8 @@
 	<div class="main-content">
 		<div class="slides-container center">
 			<div id="slides">
-				<img src="images/slideshow/slide1-crop.jpg" />
-				<img src="images/slideshow/slide2-crop.jpg" />
+				<img src="images/slideshow/Cakalnica.jpg" />
+				<img src="images/slideshow/Kuharji.jpg" />
 				<img src="images/slideshow/slide3-crop.jpg" />
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 				<div class="odd clearfix">
 					<div class="text">
 						<h3>PANDE</h3>
-						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushii v obliki pande.</p>
+						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushi v obliki pande.</p>
 					</div>
 					<img src="images/pande.jpeg" alt="">				
 				</div>
