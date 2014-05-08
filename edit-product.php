@@ -45,11 +45,12 @@
 			$result = mysqli_query($connection, 'SELECT * FROM hrana WHERE HranaId='.$_GET['hranaid']);
 		} else if (isset($_GET['pijacaid'])) {
 			$result = mysqli_query($connection, 'SELECT * FROM pijaca WHERE PijacaId='.$_GET['pijacaid']);
-		}	
+		}
+
 		if ($result) {
 			$product = mysqli_fetch_array($result);
 			$ime = $product['Ime'];
-			$vrsta = !empty($product['VrstaHrane'])?$product['VrstaHrane']:null; //Kaj pa če je $result==pijacaid?? vrsta pijace je lahko 'alkoholna'
+			$vrsta = !empty($product['VrstaHrane'])?$product['VrstaHrane']:null;
 			$opis = $product['Opis'];
 			$cena = $product['Cena'];		
 		} else {
@@ -88,7 +89,7 @@
 			if (isset($_GET['hranaid'])) {
 				$success = mysqli_query($connection, "UPDATE hrana SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE HranaId=".$_GET['hranaid']);
 			} else {
-				$success = mysqli_query($connection, "UPDATE pijaca SET Ime='$ime', VrstaPijace='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE PijacaId=".$_GET['pijacaid']);
+				$success = mysqli_query($connection, "UPDATE pijaca SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE PijacaId=".$_GET['pijacaid']);
 			}
 		}
 	}

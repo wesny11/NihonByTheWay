@@ -23,20 +23,11 @@
 		<?php include('main-header.php'); ?>
 	</header>
 
-<<<<<<< HEAD
 	<div class="main-content">
 		<div class="slides-container center">
 			<div id="slides">
 				<img src="images/slideshow/slide1-crop.jpg" />
 				<img src="images/slideshow/slide2-crop.jpg" />
-=======
-
-	<div class="main-content">
-		<div class="slides-container center">
-			<div id="slides">
-				<img src="images/slideshow/Cakalnica.jpg" />
-				<img src="images/slideshow/Kuharji.jpg" />
->>>>>>> FETCH_HEAD
 				<img src="images/slideshow/slide3-crop.jpg" />
 			</div>
 		</div>
@@ -52,11 +43,7 @@
 				<div class="odd clearfix">
 					<div class="text">
 						<h3>PANDE</h3>
-<<<<<<< HEAD
 						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushii v obliki pande.</p>
-=======
-						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushi v obliki pande.</p>
->>>>>>> FETCH_HEAD
 					</div>
 					<img src="images/pande.jpeg" alt="">				
 				</div>
@@ -71,18 +58,10 @@
 		</div>	
 	</div>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
 	<footer class="main-footer">
 		<?php include('main-footer.php'); ?>
 	</footer>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
 	<script>
 		$(function() {
 			$('#slides').slidesjs({
@@ -100,8 +79,4 @@
 	</script>
 </body>
 </html>
-<<<<<<< HEAD
 <?php mysqli_close($connection); ?>
-=======
-<?php mysqli_close($connection); ?>
->>>>>>> FETCH_HEAD
