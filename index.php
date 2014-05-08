@@ -26,9 +26,9 @@
 	<div class="main-content">
 		<div class="slides-container center">
 			<div id="slides">
-				<img src="images/slideshow/slide1-crop.jpg" />
-				<img src="images/slideshow/slide2-crop.jpg" />
-				<img src="images/slideshow/slide3-crop.jpg" />
+				<img src="images/slideshow/slide1.jpg" />
+				<img src="images/slideshow/slide2.jpg" />
+				<img src="images/slideshow/slide3.jpg" />
 			</div>
 		</div>
 		<div class="row">

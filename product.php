@@ -115,9 +115,14 @@
 									$user = mysqli_fetch_array($result);
 									echo '<div class="single-comment">';
 									echo '<div class="author"><span>'.$user[0]." ".$user[1].'</span></div>';
-									echo '<div class="text"><p>'.$vrstica['Vsebina'].'</p></div>';
+									echo '<div class="text"><p>'.$vrstica['Vsebina'].'</p></div>';									
 									echo '</div>';
-								}				
+								}
+								if (isset($_SESSION['admin'])) {
+									echo'<div class="admin-buttons2">
+											<a href="delete-comment.php?id='.$vrstica[0].'&'.($izbira!=5?"hranaid=".$id:"pijacaid=".$id).'&izbira='.$izbira.'" class="delete">Izbriši</a>
+										</div>';
+								}			
 							}
 						} else {
 							echo '<div class="single-comment">';						

@@ -25,6 +25,9 @@
 			<?php if (isset($_GET['s'])): ?>
 				<h3 class="green">Izdelek je bil uspešno izbrisan</h3>
 			<?php endif; ?>
+			<?php if (isset($_GET['k'])): ?>
+				<h3 class="green">Komentar je bil uspešno izbrisan</h3>
+			<?php endif; ?>
 			<?php if (isset($_SESSION['admin'])): ?>
 				<div class="add-product-button">
 					<a class="big-red" href="add-product.php">Dodaj</a>
