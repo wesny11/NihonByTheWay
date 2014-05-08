@@ -6,6 +6,7 @@
 <?php
 	session_start();
 	include('mysql-connection.php');
+	include('basket.php');
 ?>
 <?php
 	$izbira = null;

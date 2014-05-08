@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 
-
 	<script src="scripts/jquery-1.11.1.min.js"></script>
 	<script src="scripts/jquery.slides.min.js"></script>
 </head>
