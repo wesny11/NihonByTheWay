@@ -1,3 +1,7 @@
+<?php include('mysql-connection.php'); 
+	  include('basket.php');
+?>
+<!doctype html>
 <div class="row clearfix">
 	<a href="index.php"><h1 class="logo">日本ByTheWay</h1></a>
 	<nav class="main-nav left">
@@ -40,7 +44,19 @@
 				?>
 			</ul>
 			</li>
-			<li class="shopping-cart"><a href="basket.php"><span>Shopping cart</span></a></li>
+			<li class="shopping-cart"><a href="basket.php"><span>Shopping cart</span></a>
+				<ul>
+					<?php 
+						if(sizeof($seznamZivil) > 0){
+							foreach($seznamZivil as $zivilo){
+								if($zivilo != null){
+									echo '<li><a href="#">'.$zivilo[0] . " " . $zivilo[1] . " " . $zivilo[2] .'</a></li>';
+								}
+							}					
+						} 
+					?>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </div>
