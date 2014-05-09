@@ -1,0 +1,74 @@
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+// Clearfix
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+// Sticky footer
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 32px; /* bottom = footer height */
+}
+
+.row {
+	display: block;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.inline-list {
+	list-style: none;	
+	margin: 0;
+	padding: 0;
+	li {
+		float: left;
+		display: inline-block;
+	}
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.red {
+	color: $red;
+}
+
+.green {
+	color: green;
+}

@@ -1,0 +1,12 @@
+/* Prevent the slideshow from flashing on load */
+#slides {
+	display: none;	
+}
+
+/* Center the slideshow */
+.slides-container {
+	margin: 0 auto;
+	margin-top: -37px;
+	max-width: 1920px;
+	z-index: 10;
+}
