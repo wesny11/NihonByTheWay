@@ -38,3 +38,8 @@ a.big-red, button.big-red {
 	.edit { background-image: url('../images/site-images/edit.png'); margin-right: 10px; }
 	.delete { background-image: url('../images/site-images/delete.png'); }
 }
+
+.admin-buttons2 {
+	@extend .admin-buttons;
+	padding: 20px 0;
+}

@@ -23,13 +23,12 @@
 		<?php include('main-header.php'); ?>
 	</header>
 
-
 	<div class="main-content">
 		<div class="slides-container center">
 			<div id="slides">
-				<img src="images/slideshow/Cakalnica.jpg" />
-				<img src="images/slideshow/Kuharji.jpg" />
-				<img src="images/slideshow/slide3-crop.jpg" />
+				<img src="images/slideshow/slide1.jpg" />
+				<img src="images/slideshow/slide2.jpg" />
+				<img src="images/slideshow/slide3.jpg" />
 			</div>
 		</div>
 		<div class="row">
@@ -44,7 +43,7 @@
 				<div class="odd clearfix">
 					<div class="text">
 						<h3>PANDE</h3>
-						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushi v obliki pande.</p>
+						<p>Pred kratkim je v Japonskem živalskem vrtu samička pande povrgla dva mladička. Ob tem dogodku smo za vas v mesecu aprilu pripravili okusni črnobeli sushii v obliki pande.</p>
 					</div>
 					<img src="images/pande.jpeg" alt="">				
 				</div>
@@ -59,11 +58,9 @@
 		</div>	
 	</div>
 
-
 	<footer class="main-footer">
 		<?php include('main-footer.php'); ?>
 	</footer>
-
 
 	<script>
 		$(function() {
