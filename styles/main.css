@@ -106,7 +106,11 @@ a.big-red:hover, button.big-red:hover {
 .admin-buttons {
   padding: 10px 50px;
 }
-.admin-buttons .edit, .admin-buttons .delete {
+.admin-buttons2 {
+  padding: 0;
+  margin-bottom: 20px;
+}
+.admin-buttons .edit, .admin-buttons .delete, .admin-buttons2 .delete {
   color: #222;
   background-repeat: no-repeat;
   padding-left: 20px;
@@ -115,7 +119,7 @@ a.big-red:hover, button.big-red:hover {
   background-image: url("../images/site-images/edit.png");
   margin-right: 10px;
 }
-.admin-buttons .delete {
+.admin-buttons .delete, .admin-buttons2 .delete {
   background-image: url("../images/site-images/delete.png");
 }
 
