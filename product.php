@@ -95,7 +95,11 @@
 							$pid = $id;
 							$pcat = $_GET['izbira']!=5?'h':'p';
 							//$qt = echo '<script>var x = document.getElementById("quantity").value;</script>';
-							echo '<a class="big-red" href="basket.php?a=0&pid='.$pid.'&pcat='.$pcat.'&qt=1">Dodaj v naročilo</a>';
+							if (isset($_SESSION['user']) || isset($_SESSION['admin'])){
+								echo '<a class="big-red" href="basket.php?a=0&pid='.$pid.'&pcat='.$pcat.'&qt=1">Dodaj v naročilo</a>';
+							} else {
+								echo '<a class="big-red" href="login.php">Dodaj v naročilo</a>';
+							}
 						?>						
 					</div>
 					<div class="description">
@@ -149,7 +153,6 @@
 
 	<script>
 		$(getValue(var val) {
-
 		});
 	</script>
 </body>

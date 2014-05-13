@@ -59,7 +59,11 @@
 	} else {
 		// Kliknen gumb shrani
 		$ime = $_POST['name'];
-		$vrsta = $_POST['category'];
+		if (isset($_GET['hranaid'])) {
+			$vrsta = $_POST['category'];
+		} else {
+			$vrsta = "Alkoholna";
+		}
 		$opis = $_POST['description'];
 		$cena = $_POST['price'];
 		$slika = $_FILES['image']['name'];
@@ -89,7 +93,7 @@
 			if (isset($_GET['hranaid'])) {
 				$success = mysqli_query($connection, "UPDATE hrana SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE HranaId=".$_GET['hranaid']);
 			} else {
-				$success = mysqli_query($connection, "UPDATE pijaca SET Ime='$ime', VrstaHrane='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE PijacaId=".$_GET['pijacaid']);
+				$success = mysqli_query($connection, "UPDATE pijaca SET Ime='$ime', VrstaPijace='$vrsta', Opis='$opis', Cena='$cena'".(!empty($slika)?", Slika='images/$slika'":"")." WHERE PijacaId=".$_GET['pijacaid']);
 			}
 		}
 	}
