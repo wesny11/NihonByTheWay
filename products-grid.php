@@ -23,10 +23,14 @@
 	<div class="main-content">
 		<div class="row clearfix">
 			<?php if (isset($_GET['s'])): ?>
-				<h3 class="green">Izdelek je bil uspešno izbrisan</h3>
+				<div class="edit-product center">
+					<h3 class="green">Izdelek je bil uspešno izbrisan</h3>
+				</div>
 			<?php endif; ?>
 			<?php if (isset($_GET['k'])): ?>
-				<h3 class="green">Komentar je bil uspešno izbrisan</h3>
+				<div class="edit-product center">
+					<h3 class="green">Komentar je bil uspešno izbrisan</h3>
+				</div>
 			<?php endif; ?>
 			<?php if (isset($_SESSION['admin'])): ?>
 				<div class="add-product-button">
@@ -55,7 +59,7 @@
 						while($vrstica = mysqli_fetch_array($result)) {
 							echo '<li>';	
 								echo '<div class="inner">';
-									echo '<div class="product-picture"><img src='.$vrstica["Slika"].' alt=""></div>';
+									echo '<div class="product-picture"><a href="product.php?izbira='.$_GET['izbira'].'&posamezna='.(!empty($vrstica["HranaID"])?$vrstica["HranaID"]:$vrstica["PijacaID"]).'"><h4><img src='.$vrstica["Slika"].' alt=""></h4></a></div>';
 									echo '<div class="product-information">';
 										echo '<a href="product.php?izbira='.$_GET['izbira'].'&posamezna='.(!empty($vrstica["HranaID"])?$vrstica["HranaID"]:$vrstica["PijacaID"]).'"><h4>'.$vrstica["Ime"].'</h4></a>';
 										echo '<h5>'.$vrstica["Cena"].",00 €".'</h5>';

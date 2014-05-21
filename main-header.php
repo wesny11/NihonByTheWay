@@ -25,20 +25,20 @@
 					echo '<li class="welcome"><p>Konnichiwa <span class="red">' . $username . '</span></p></li>';
 				} else if (isset($_SESSION['admin'])) {
 					$username = $_SESSION['admin'];
-					echo '<li class="welcome"><p><span class="welcome">' . $username . '</span></p></li>';
+					echo '<li class="welcome"><p>Welcome <span class="red">administrator</span></p></li>';
 				}
-			?>			
-			<li class="user"><a href="#"><span>User</span></a>
-			<ul>
-				<?php
-					if(!$username) {
-						echo '<li><a href="login.php">PRIJAVA</a></li>';
-						echo '<li><a href="register.php">REGISTRACIJA</a></li>';
-					} else {
-						echo '<li><a href="logout.php">ODJAVA</a></li>';
-					}
-				?>
-			</ul>
+			?>
+			<li class="user"><a href=""><span>User</span></a>
+				<ul>
+					<?php
+						if(!$username) {
+							echo'<li><a href="login.php">PRIJAVA</a></li>';
+							echo'<li><a href="register.php">REGISTRACIJA</a></li>';
+						} else {
+							echo'<li><a href="logout.php">ODJAVA</a></li>';
+						}
+					?>
+				</ul>
 			</li>
 			<li class="shopping-cart"><a href="basket.php"><span>Shopping cart</span></a></li>
 		</ul>

@@ -11,5 +11,5 @@
 	// Ime baze
 	$db_name = "restavracija";
 
-	$connection = mysqli_connect("$db_host", "$db_username", "$db_pass", "$db_name") or die("Povezava na mysql ni uspela!");
+	$connection = mysqli_connect("$db_host", "$db_username", "$db_pass", "$db_name") or die("Povezava na mysql ni uspela!");	
 ?>

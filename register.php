@@ -20,7 +20,7 @@
 		$ime = $_POST['name'];
 		$priimek = $_POST['surname'];
 		$email = $_POST['email'];
-		$geslo = $_POST['password'];
+		$geslo = $_POST['password']; $geslo = hash('sha512', $geslo);
 		$naslov = $_POST['address'];
 		$mesto = $_POST['city'];
 		$posta = $_POST['zip'];
