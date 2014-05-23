@@ -1,84 +1,72 @@
 <?php
-	ini_set('display_startup_errors',1);
-	ini_set('display_errors',1);
-	error_reporting(-1);
+    ini_set('display_startup_errors',1);
+    ini_set('display_errors',1);
+    error_reporting(-1);
 ?>
 <?php
-	session_start();
-	include('mysql-connection.php');
-?>
-<?php
-	if (isset($_GET['a']) && isset($_GET['pid']) && isset($_GET['pcat']) && isset($_GET['qt'])) {
-		$action = $_GET['a'];
-		$id = $_GET['pid'];
-		$category = $_GET['pcat'];
-		$quantity = $_GET['qt'];
+    include('mysql-connection.php');
+    include('basket.class.php');
+    session_start();    
 
-		if (!isset($_SESSION['cart'.$id])) {
-			$_SESSION['cart'.$id] = $id." ".$category." ".$quantity;
-		} else {
-			if ($action == '0') {
-				$_SESSION['cart'.$id] = $id." ".$category." ".(explode(" ", $_SESSION['cart'])[2] + $quantity);
-			} else if ($action == '1') {
-				$_SESSION['cart'.$id] = $id." ".$category." ".(explode(" ", $_SESSION['cart'])[2] - $quantity);
-			}
-		}
-	}
+    if (isset($_GET['add'])) {
+        $id = substr($_GET['add'], 1);
+        $izbira = $_GET['add'][0];
+
+        $Cart = new Basket('basket');
+
+        if ($izbira < 5) {
+            $result = mysqli_query($connection, 'SELECT * FROM Hrana WHERE HranaID='.$id);
+            $item = mysqli_fetch_array($result);
+            $Cart->setItem($item['HranaID'], $item['Ime'], 'hrana', $item['Cena'], 1);
+        } else {
+            $result = mysqli_query($connection, 'SELECT * FROM Pijaca WHERE PijacaID='.$id);
+            $item = mysqli_fetch_array($result);
+            $Cart->setItem($item['PijacaID'], $item['Ime'], 'pijaca', $item['Cena'], 1);
+        }
+    }
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Košarica - 日本ByTheWay</title>
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/main.css">
+    <meta charset="UTF-8">
+    <title>Košarica - 日本ByTheWay</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-	<header class="main-header">
-		<?php include('main-header.php'); ?>
-	</header>
+    <header class="main-header">
+        <?php include('main-header.php'); ?>
+    </header>
 
-	<div class="main-content">
-		<div class="row">
-			<table>
-				<tr>
-					<th>Ime</th>
-					<th>Količina</th>
-					<th>Cena</th>
-					<th>Akcija</th>
-				</tr>
-				<?php
-					foreach ($_SESSION as $key => $value) {
-						if (substr($key, 0, 4) == 'cart') {
-							$cart_data = explode(" ", $key);
-							$id = $cart_data[0];
-							$category = $cart_data[1];
-							$quantity = $cart_data[2];
+    <div class="main-content">
+        <div class="row">
+            <h1>Košarica</h1>
+                <?php if ($Cart->hasItems()): ?>
+                <form action="basket-action.php" method="get">
+                    <table class="basket">
+                        <tr>
+                            <td>Količina</td>
+                            <td>Izdelek</td>
+                            <td>Cena</td>
+                            <td>Skupaj</td>
+                            <td>Izbriši</td>
+                        </tr>
+                        <?php
+                            $total_price = 0;
+                            echo $Cart->getItemName($id);
+                            //$total_price += $Cart->getItemQuantity($id)*$Cart->getItemPrice($id);
+                        ?>
+                    </table>
+                </form>
+                <?php else: ?>
+                    <p class="center">Vaša košarica je prazna.</p>
+                <?php endif; ?>
+        </div>      
+    </div>
 
-							if ($category == 'h') {
-								$result = mysqli_query($connection, 'SELECT * FROM hrana WHERE HranaID='.$id);
-							} else {
-								$result = mysqli_query($connection, 'SELECT * FROM pijaca WHERE PijacaID='.$id);
-							}
-
-							while ($vrstica = mysqli_fetch_array($result)) {
-								echo '<tr>';
-								echo '<td>'.$vrstica['Ime'].'</td>';
-								echo '<td>'.$quantity.'</td>';
-								echo '<td>'.$vrstica['Cena']*$quantity.'€</td>';
-								echo '<td><a href="basket.php?a=1&pid='.$id.'&pcat='.$category.'&qt=1">[-]</a>&nbsp;<a href="basket.php?a=0&pid='.$id.'&pcat='.$category.'&qt=1">[+]</a></td>';
-								echo '</tr>';
-							}
-						}
-					}
-				?>		
-			</table>
-		</div>		
-	</div>
-
-	<footer class="main-footer">
-		<?php include('main-footer.php'); ?>
-	</footer>
+    <footer class="main-footer">
+        <?php include('main-footer.php'); ?>
+    </footer>
 </body>
 </html>
 <?php mysqli_close($connection); ?>

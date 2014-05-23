@@ -63,6 +63,10 @@
 	<title>Izdelek - 日本ByTheWay</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
+	<script src="scripts/jquery-1.11.1.min.js"></script>
+	<script>
+		$.get('product.php', {qt:$('#quantity').val()});
+	</script>
 </head>
 <body>
 	<header class="main-header">
@@ -90,16 +94,14 @@
 					</div>
 					<div class="order">
 						<label for="quantity">Količina:</label>
-						<input id="quantity" type="text" name="quantity" value="" onkeyup="getValue(this.value)">
+						<input id="quantity" type="text" name="quantity" value="">
 						<?php
-							$pid = $id;
-							$pcat = $_GET['izbira']!=5?'h':'p';
-							if (isset($_SESSION['user']) || isset($_SESSION['admin'])){
-								echo '<a class="big-red" href="basket.php?a=0&pid='.$pid.'&pcat='.$pcat.'&qt=1">Dodaj v naročilo</a>';
+							if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
+								echo '<a class="big-red" href="basket.php?add='.$izbira.$id.'">Dodaj v naročilo</a>';
 							} else {
 								echo '<a class="big-red" href="login.php">Dodaj v naročilo</a>';
 							}
-						?>						
+						?>
 					</div>
 					<div class="description">
 						<h4>Opis</h4>
@@ -149,11 +151,6 @@
 	<footer class="main-footer">
 		<?php include('main-footer.php'); ?>
 	</footer>
-
-	<script>
-		$(getValue(var val) {
-		});
-	</script>
 </body>
 </html>
 <?php mysqli_close($connection); ?>

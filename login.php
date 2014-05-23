@@ -18,7 +18,7 @@
 
 	if (isset($_POST['submit'])) {
 		$email = $_POST['email'];
-		$geslo = $_POST['password']; $geslo = hash("sha512", $geslo);
+		$geslo = $_POST['password']; //$geslo = hash("sha512", $geslo);
 
 		$valid = true;
 

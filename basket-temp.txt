@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <th>Ime</th>
+        <th>Količina</th>
+        <th>Cena</th>
+        <th>Akcija</th>
+    </tr>
+    <?php
+        foreach ($_SESSION as $key => $value) {
+            if (substr($key, 0, 4) == 'cart') {
+                $cart_data = explode(" ", $key);
+                $id = $cart_data[0];
+                $category = $cart_data[1];
+                $quantity = $cart_data[2];
+
+                if ($category == 'h') {
+                    $result = mysqli_query($connection, 'SELECT * FROM hrana WHERE HranaID='.$id);
+                } else {
+                    $result = mysqli_query($connection, 'SELECT * FROM pijaca WHERE PijacaID='.$id);
+                }
+
+                while ($vrstica = mysqli_fetch_array($result)) {
+                    echo '<tr>';
+                    echo '<td>'.$vrstica['Ime'].'</td>';
+                    echo '<td>'.$quantity.'</td>';
+                    echo '<td>'.$vrstica['Cena']*$quantity.'€</td>';
+                    echo '<td><a href="basket.php?a=1&pid='.$id.'&pcat='.$category.'&qt=1">[-]</a>&nbsp;<a href="basket.php?a=0&pid='.$id.'&pcat='.$category.'&qt=1">[+]</a></td>';
+                    echo '</tr>';
+                }
+            }
+        }
+    ?>      
+</table>
