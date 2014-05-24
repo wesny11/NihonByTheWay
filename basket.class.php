@@ -6,7 +6,9 @@ class Basket {
 
     function __construct($name) {
         $this->basket_name = $name;
-        $this->items = $_SESSION[$this->basket_name];
+        if (isset($_SESSION[$this->basket_name])) {
+            $this->items = $_SESSION[$this->basket_name];
+        }        
     }
 
     function setItem($id, $name, $category, $price, $quantity) {

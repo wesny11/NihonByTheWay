@@ -73,7 +73,7 @@ body {
   color: green;
 }
 
-a.big-red, button.big-red {
+input.big-red, a.big-red, button.big-red {
   border: 0 none;
   border-radius: 2px 2px 2px 2px;
   color: #FFFFFF;
@@ -93,7 +93,7 @@ a.big-red, button.big-red {
   background: none repeat scroll 0 0 #f5461e;
   color: #fff;
 }
-a.big-red:hover, button.big-red:hover {
+input.big-red:hover, a.big-red:hover, button.big-red:hover {
   background: none repeat scroll 0 0 #999999;
   color: #fff;
 }
@@ -137,7 +137,7 @@ a.big-red:hover, button.big-red:hover {
   color: #333;
   float: left;
   font-size: 1.5em;
-  padding: 10px 50px 0 75px;
+  padding: 2px 50px 0 75px;
   margin: 0;
   margin-top: 10px;
   text-decoration: none;
@@ -192,6 +192,7 @@ a.big-red:hover, button.big-red:hover {
   font-size: 12px;
   padding-top: 15px;
   padding-right: 25px;
+  overflow: hidden;
 }
 .main-header .user-nav .user, .main-header .user-nav .shopping-cart {
   display: block;
@@ -479,4 +480,30 @@ a.big-red:hover, button.big-red:hover {
 .main-content .about-us p {
   max-width: 900px;
   margin: 0 auto;
+}
+.main-content .basket {
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  width: 100%;
+}
+.main-content .basket th, .main-content .basket td {
+  padding: 5px 10px;
+}
+.main-content .basket tr td {
+  background: #fff;
+}
+.main-content .basket tr.odd td {
+  background: #eee;
+}
+.main-content .basket th {
+  background-color: #006b68;
+  color: #fff;
+  text-align: left;
+  white-space: nowrap;
+}
+.main-content .basket .item_name {
+  width: 100%;
+}
+.main-content .basket .quantity input {
+  text-align: center;
 }
