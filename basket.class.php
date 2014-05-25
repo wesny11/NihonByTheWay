@@ -45,8 +45,8 @@ class Basket {
     }
 
     function clean() {
-        foreach ($this->items as $id => $quantity) {
-            if ($quantity < 1) {
+        foreach ($this->items as $id => $item) {
+            if ($item['quantity'] < 1) {
                 unset($this->items[$id]);
             }
         }

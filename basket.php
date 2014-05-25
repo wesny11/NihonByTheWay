@@ -7,23 +7,7 @@
     include('mysql-connection.php');
     include('basket.class.php');
     session_start();
-
-    if (isset($_GET['add'])) {
-        $id = substr($_GET['add'], 1);
-        $izbira = $_GET['add'][0];
-
-        $Cart = new Basket($_SESSION['user']);
-
-        if ($izbira < 5) {
-            $result = mysqli_query($connection, 'SELECT * FROM Hrana WHERE HranaID='.$id);
-            $item = mysqli_fetch_array($result);
-            $Cart->setItem($item['HranaID'], $item['Ime'], 'hrana', $item['Cena'], 1);
-        } else {
-            $result = mysqli_query($connection, 'SELECT * FROM Pijaca WHERE PijacaID='.$id);
-            $item = mysqli_fetch_array($result);
-            $Cart->setItem($item['PijacaID'], $item['Ime'], 'pijaca', $item['Cena'], 1);
-        }
-    }
+    $Cart = new Basket($_SESSION['user']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,7 +16,8 @@
     <title>Košarica - 日本ByTheWay</title>
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/cart.js"></script>
+    <script src="scripts/jquery-1.11.1.min.js"></script>
+    <script src="scripts/basket.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -60,9 +45,9 @@
                         <?php echo $i++%2==0 ? '<tr>' : '<tr class="odd">'; ?>
                             <td class="quantity"><input type="text" name="quantity[<?php echo $item['quantity']; ?>]" size="1" value="<?php echo $item['quantity']; ?>" tabindex="<?php echo $i; ?>"></td>
                             <td class="item-name"><?php echo $item['name']; ?></td>
-                            <td class="price"><?php echo $item['price']; ?></td>
-                            <td class="extended-price"><?php echo $item['price']*$item['quantity']; ?></td>
-                            <td class="remove"><input type="checkbox" name="remove[]" value="<?php echo $item['id']; ?>"></td>
+                            <td class="price"><?php echo $item['price'].'€'; ?></td>
+                            <td class="extended-price"><?php echo $item['price']*$item['quantity'].'€'; ?></td>
+                            <td class="remove"><input type="checkbox" name="remove" value="<?php echo $id; ?>"></td>
                         </tr>
                         <?php endforeach; ?>
                         <tr><td colspan="4"></td><td id="total-price"><?php echo $total_price." €"; ?></td></tr>

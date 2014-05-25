@@ -93,11 +93,11 @@
 						<span class="price"><?php echo $cena.',00 €'; ?></span>
 					</div>
 					<div class="order">
-						<label for="quantity">Količina:</label>
-						<input id="quantity" type="text" name="quantity" value="">
+						<!-- <label for="quantity">Količina:</label>
+						<input id="quantity" type="text" name="quantity" value=""> -->
 						<?php
-							if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
-								echo '<a class="big-red" href="basket.php?add='.$izbira.$id.'">Dodaj v naročilo</a>';
+							if (isset($_SESSION['user'])) { //  brez || isset($_SESSION['admin']), admin ne potrebuje naročanja izdelkov
+								echo '<a class="big-red" href="basket-action.php?id='.$id.'&ime='.$ime.'&cena='.$cena.'&izbira='.$izbira.'">Dodaj v naročilo</a>';
 							} else {
 								echo '<a class="big-red" href="login.php">Dodaj v naročilo</a>';
 							}

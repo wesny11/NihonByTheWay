@@ -40,7 +40,7 @@
 					?>
 				</ul>
 			</li>
-			<li class="shopping-cart"><a href="basket.php"><span>Shopping cart</span></a></li>
+			<li><a class="shopping-cart" href="basket.php"><span>Shopping cart</span></a></li>
 		</ul>
 	</nav>
 </div>
