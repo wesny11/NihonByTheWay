@@ -7,7 +7,12 @@
     include('mysql-connection.php');
     include('basket.class.php');
     session_start();
-    $Cart = new Basket($_SESSION['user']);
+
+    if (isset($_SESSION['user'])) {
+        $Cart = new Basket($_SESSION['user']);
+    } else {
+        $Cart = new Basket('temp');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,7 +48,7 @@
                                 $total_price += $item['quantity']*$item['price'];
                         ?>
                         <?php echo $i++%2==0 ? '<tr>' : '<tr class="odd">'; ?>
-                            <td class="quantity"><input type="text" name="quantity[<?php echo $item['quantity']; ?>]" size="1" value="<?php echo $item['quantity']; ?>" tabindex="<?php echo $i; ?>"></td>
+                            <td class="quantity"><input type="text" name="quantity[<?php echo $id; ?>]" size="1" value="<?php echo $item['quantity']; ?>" tabindex="<?php echo $i; ?>"></td>
                             <td class="item-name"><?php echo $item['name']; ?></td>
                             <td class="price"><?php echo $item['price'].'€'; ?></td>
                             <td class="extended-price"><?php echo $item['price']*$item['quantity'].'€'; ?></td>
@@ -52,7 +57,7 @@
                         <?php endforeach; ?>
                         <tr><td colspan="4"></td><td id="total-price"><?php echo $total_price." €"; ?></td></tr>
                     </table>
-                    <input class="big-red" type="submit" name="update" value="Posodobi košarico">
+                    <!-- <input class="big-red" type="submit" name="update" value="Posodobi košarico"> -->
                 </form>
                 <?php else: ?>
                     <p class="center">Vaša košarica je prazna.</p>

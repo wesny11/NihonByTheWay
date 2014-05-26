@@ -18,19 +18,19 @@ $(function() {
     });
      
     $(".basket tr .quantity input").change(function() {
-        var id = $(".basket tr .remove input").val();
+        var id = $(this).attr("name").slice(9, -1);
         var quantity = $(this).val();
         $.ajax({
             type: "GET",
             url: "basket-action.php",
-            data: "id=" + id + "&quantity=" + quantity,
+            data: "id="+ id + "&quantity=" + quantity,
             success: function() {
-                var startColor = $(".basket tr .remove input").parent().parent().hasClass("odd") ? "#eee" : "#fff";
-                $(".basket tr .remove input").parent().parent().find("td").animate({ backgroundColor: "#ff8" }, 100).animate({ backgroundColor: startColor }, 800);
+                var startColor = $(".basket tr .quantity input[name*=" + id + "]").parent().parent().hasClass("odd") ? "#eee" : "#fff";
+                $(".basket tr .quantity input[name*=" + id + "]").parent().parent().find("td").animate({ backgroundColor: "#ff8" }, 100).animate({ backgroundColor: startColor }, 800);
                 calcPrice();
             },
             error: function() {
-                window.location("basket-action.php?id=" + id + "&quantity=" + quantity);
+                //window.location("basket-action.php?id=" + id + "&quantity=" + quantity);
             }
         });
     });

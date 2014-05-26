@@ -10,13 +10,11 @@ if (isset($_SESSION['user'])) {
         $Cart->setItem($_GET['id'], $_GET['ime'], ($_GET['izbira']<5?'hrana':'pijaca'), $_GET['cena'], $quantity);
     } else {
         if ( isset($_GET['id']) && isset($_GET['quantity']) ) {
-            $Cart->setItemQuantity($_GET['id'], $_GET['quantity']);
+            $Cart-setItemQuantity($_GET['id'], $_GET['quantity']);
         }
 
         if (isset($_GET['remove'])) {
-            foreach ($_GET['remove'] as $id) {
-                $Cart->setItemQuantity($id, 0);
-            }
+            $Cart->setItemQuantity($_GET['remove'], 0);
         }
     }
 
