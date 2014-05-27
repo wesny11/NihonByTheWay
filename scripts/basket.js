@@ -4,7 +4,7 @@ $(function() {
         $.ajax({
             type: "GET",
             url: "basket-action.php",
-            data: "remove=" + id,
+            data: "remove[]=" + id,
             success: function() {
                 $(".basket tr .remove input[value=" + id + "]").parent().parent().fadeOut(500, function() {
                     $(this).remove();
@@ -16,21 +16,21 @@ $(function() {
             }
         });
     });
-     
+
     $(".basket tr .quantity input").change(function() {
         var id = $(this).attr("name").slice(9, -1);
         var quantity = $(this).val();
         $.ajax({
             type: "GET",
             url: "basket-action.php",
-            data: "id="+ id + "&quantity=" + quantity,
+            data: "quantity[" + id + "]=" + quantity,
             success: function() {
                 var startColor = $(".basket tr .quantity input[name*=" + id + "]").parent().parent().hasClass("odd") ? "#eee" : "#fff";
                 $(".basket tr .quantity input[name*=" + id + "]").parent().parent().find("td").animate({ backgroundColor: "#ff8" }, 100).animate({ backgroundColor: startColor }, 800);
                 calcPrice();
             },
             error: function() {
-                //window.location("basket-action.php?id=" + id + "&quantity=" + quantity);
+                window.location("basket-action.php?quantity[" + id + "]=" + quantity);
             }
         });
     });

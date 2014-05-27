@@ -7,7 +7,7 @@
 	// Ime uporabnika
 	$db_username = "root"; 
 	// Koda
-	$db_pass = "root";
+	$db_pass = "";
 	// Ime baze
 	$db_name = "restavracija";
 

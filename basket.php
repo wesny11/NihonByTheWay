@@ -9,9 +9,9 @@
     session_start();
 
     if (isset($_SESSION['user'])) {
-        $Cart = new Basket($_SESSION['user']);
+        $Basket = new Basket($_SESSION['user']);
     } else {
-        $Cart = new Basket('temp');
+        $Basket = new Basket('temp');
     }
 ?>
 <!doctype html>
@@ -32,7 +32,7 @@
     <div class="main-content">
         <div class="row">
             <h1>Košarica</h1>
-                <?php if ($Cart->hasItems()): ?>
+                <?php if ($Basket->hasItems()): ?>
                 <form action="basket-action.php" method="get">
                     <table class="basket">
                         <tr>
@@ -44,20 +44,20 @@
                         </tr>
                         <?php
                             $total_price = $i = 0;
-                            foreach ($Cart->getItems() as $id => $item):
+                            foreach ($Basket->getItems() as $id => $item):
                                 $total_price += $item['quantity']*$item['price'];
                         ?>
                         <?php echo $i++%2==0 ? '<tr>' : '<tr class="odd">'; ?>
-                            <td class="quantity"><input type="text" name="quantity[<?php echo $id; ?>]" size="1" value="<?php echo $item['quantity']; ?>" tabindex="<?php echo $i; ?>"></td>
+                            <td class="quantity"><input type="text" name="quantity[<?php echo $id; ?>]" size="1" value="<?php echo $item['quantity']; ?>" tabindex="<?php echo $i; ?>" /></td>
                             <td class="item-name"><?php echo $item['name']; ?></td>
                             <td class="price"><?php echo $item['price'].'€'; ?></td>
                             <td class="extended-price"><?php echo $item['price']*$item['quantity'].'€'; ?></td>
-                            <td class="remove"><input type="checkbox" name="remove" value="<?php echo $id; ?>"></td>
+                            <td class="remove"><input type="checkbox" name="remove[]" value="<?php echo $id; ?>"></td>
                         </tr>
                         <?php endforeach; ?>
                         <tr><td colspan="4"></td><td id="total-price"><?php echo $total_price." €"; ?></td></tr>
                     </table>
-                    <!-- <input class="big-red" type="submit" name="update" value="Posodobi košarico"> -->
+                    <input class="big-red" type="submit" name="update" value="Posodobi košarico">
                 </form>
                 <?php else: ?>
                     <p class="center">Vaša košarica je prazna.</p>
