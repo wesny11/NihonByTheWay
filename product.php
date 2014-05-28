@@ -127,7 +127,7 @@
 									echo'<div class="admin-buttons2">
 											<a href="delete-comment.php?id='.$vrstica[0].'&'.($izbira!=5?"hranaid=".$id:"pijacaid=".$id).'&izbira='.$izbira.'" class="delete">Izbriši</a>
 										</div>';
-								}			
+								}
 							}
 						} else {
 							echo '<div class="single-comment">';						

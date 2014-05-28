@@ -36,7 +36,7 @@
 				<div class="even">
 					<div class="text">
 						<h3>SPOMLADANSKI SUSHI</h3>
-						<p>V mesecu maju vsa narava zacveti. V ta namen smo za vas pripravili posebno ponudbo –<span class="red"> Uramaki sushi</span> z okusom pomladi. Razvajajte svoje brbončice s harmonijo okusov.</p>
+						<p>V mesecu maju vsa narava zacveti. V ta namen smo za vas pripravili posebno ponudbo –<span class="red"> Uramaki sushi</span> z okusom pomladi. Razvajajte svoje brbončice s harmonijo okusov.</p>							
 					</div>					
 					<img src="images/spomladanski_sushi.JPG" alt="">
 				</div>

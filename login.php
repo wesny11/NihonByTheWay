@@ -21,17 +21,17 @@
 		$geslo = $_POST['password']; //$geslo = hash("sha512", $geslo);
 
 		$valid = true;
-
-		if (empty($email)) {
+	
+		if(empty($email)){
 			$email_error = 'Prosim vnesite email';
-			$valid = false;
-		}
+			$valid = false;		
+		}	
 
-		if (empty($geslo)) {
+		if(empty($geslo)){
 			$pass_error = 'Prosim vnesite geslo';
-			$valid = false;
+			$valid = false;		
 		}
-
+		
 		if ($valid) {
 			$result = mysqli_query($connection, "SELECT * FROM uporabniki WHERE Email='$email'");
 			if (mysqli_num_rows($result) != 0) {
@@ -79,7 +79,7 @@
 					<?php endif; ?>
 					<p>
 						<label for="email">Email:</label>
-						<input type="text" name="email" value="<?php echo $email; ?>" />
+						<input type="text" name="email" value="<?php echo $email; ?>"/>
 					</p>
 
 					<?php if (!empty($pass_error)): ?>

@@ -26,7 +26,7 @@
 		$posta = $_POST['zip'];
 
 		$valid = true;
-
+		
 		if (empty($ime)) {
 			$name_error = 'Prosim vnesite ime';
 			$valid = false;
